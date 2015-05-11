@@ -10,5 +10,6 @@
         <method name="setInputStream"></method>
         <method name="setCertificate"></method>
         <method name="close"></method>
+        <method name="getCookie"></method>
 	</plugin>
 </uexplugins>
