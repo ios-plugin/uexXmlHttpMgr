@@ -341,42 +341,182 @@
     }
 }
 
--(void)setAppVerify:(NSMutableArray *)inArguments{
-    if ([inArguments isKindOfClass:[NSMutableArray class]] && [inArguments count]>0) {
-        NSString *inOpId = [inArguments objectAtIndex:0];
-        EUExXmlHttp *httpObj = [httpDict objectForKey:inOpId];
+- (void)setAppVerify:(NSMutableArray *)inArguments {
+    
+    if ([inArguments isKindOfClass:[NSMutableArray class]] && [inArguments count] > 0) {
+        
+        NSString * inOpId = [inArguments objectAtIndex:0];
+        
+        EUExXmlHttp * httpObj = [httpDict objectForKey:inOpId];
+        
         if (httpObj) {
+            
             if (2 == [inArguments count]) {
-                NSString *isVerify = [inArguments objectAtIndex:1];
+                
+                NSString * isVerify = [inArguments objectAtIndex:1];
+                
                 if ([isVerify boolValue]) {
+                    
                     httpObj.isVerify = [isVerify boolValue];
+                    
                 }
-            }
-        }
-    }
-}
-
--(void)send:(NSMutableArray *)inArguments{
-	NSString *inOpId = [inArguments objectAtIndex:0];
-	EUExXmlHttp *httpObj = [httpDict objectForKey:inOpId];
-	if (httpObj) {
-		if (httpObj.isSending ==YES) {
-			httpObj.isSending = NO;
-            NSString *str = [httpObj.httpMethod lowercaseString];
-			if ([str isEqualToString:@"get"]) {
-                [httpObj requestForGetRequest];
-			}else if([str isEqualToString:@"post"]){
-				[httpObj requestForPostRequest];
-			}else if([str isEqualToString:@"put"]){
-				[httpObj requestForPutRequest];
-			}else if([str isEqualToString:@"delete"]){
-				[httpObj requestForDeleteRequest];
-			}else{
                 
             }
-		}
-	}
+            
+        }
+        
+    }
+    
 }
+
+- (void)send:(NSMutableArray *)inArguments {
+    
+	NSString * inOpId = [inArguments objectAtIndex:0];
+    
+	EUExXmlHttp * httpObj = [httpDict objectForKey:inOpId];
+    
+	if (httpObj) {
+        
+		if (httpObj.isSending == YES) {
+            
+			httpObj.isSending = NO;
+            NSString * str = [httpObj.httpMethod lowercaseString];
+            
+			if ([str isEqualToString:@"get"]) {
+                
+                [httpObj requestForGetRequest];
+                
+			} else if([str isEqualToString:@"post"]) {
+                
+				[httpObj requestForPostRequest];
+                
+			} else if([str isEqualToString:@"put"]) {
+                
+				[httpObj requestForPutRequest];
+                
+			} else if([str isEqualToString:@"delete"]) {
+                
+				[httpObj requestForDeleteRequest];
+                
+			} else {
+                
+            }
+            
+		}
+        
+	}
+    
+}
+
+//获取Cookie
+- (void)getCookie:(NSMutableArray *)inArguments {
+    
+    if ([inArguments count] < 1) {
+        
+        return;
+        
+    }
+    
+    NSString * httpStr = [inArguments objectAtIndex:0];
+    
+    NSHTTPCookieStorage * cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    NSMutableArray * cookies = [NSMutableArray array];
+    
+    NSString * cookieAll = @"";
+    
+    for (NSHTTPCookie * cookie in [cookieJar cookies]) {
+        
+        NSString * domain = cookie.domain;
+        
+        if ([httpStr rangeOfString:domain].location != NSNotFound) {
+            
+            NSString * cookieStr = [NSString stringWithFormat:@"%@=%@",cookie.name,cookie.value];
+            
+            if (![cookies containsObject:cookieStr]) {
+                
+                [cookies addObject:cookieStr];
+                
+                if ([cookieAll length] == 0) {
+                    
+                    cookieAll = cookieStr;
+                    
+                } else {
+                    
+                    cookieAll = [NSString stringWithFormat:@"%@;%@",cookieAll,cookieStr];
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    NSDictionary * tempDic = [NSDictionary dictionaryWithObject:cookieAll forKey:@"cookie"];
+    
+    NSString * cbStr = [tempDic JSONFragment];
+    
+    [self jsSuccessWithName:@"uexXmlHttpMgr.cbGetCookie" opId:0 dataType:1 strData:cbStr];
+    
+}
+
+
+#pragma mark -
+#pragma mark - 获取Cookie
+
+-(void)getCookie:(NSMutableArray *)inArguments {
+    
+    if ([inArguments count] < 1) {
+        
+        return;
+        
+    }
+    
+    NSString * httpStr = [inArguments objectAtIndex:0];
+    
+    NSHTTPCookieStorage * cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    NSMutableArray * cookies = [NSMutableArray array];
+    
+    NSString * cookieAll = @"";
+    
+    for (NSHTTPCookie * cookie in [cookieJar cookies]) {
+        
+        NSString * domain = cookie.domain;
+        
+        if ([httpStr rangeOfString:domain].location != NSNotFound) {
+            
+            NSString * cookieStr = [NSString stringWithFormat:@"%@=%@",cookie.name,cookie.value];
+            
+            if (![cookies containsObject:cookieStr]) {
+                
+                [cookies addObject:cookieStr];
+                
+                if ([cookieAll length] == 0) {
+                    
+                    cookieAll = cookieStr;
+                    
+                } else {
+                    
+                    cookieAll = [NSString stringWithFormat:@"%@;%@",cookieAll,cookieStr];
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    NSDictionary * tempDic = [NSDictionary dictionaryWithObject:cookieAll forKey:@"cookie"];
+    
+    NSString * cbStr = [tempDic JSONFragment];
+    
+    [self jsSuccessWithName:@"uexXmlHttpMgr.cbGetCookie" opId:0 dataType:1 strData:cbStr];
+    
+}
+
 
 #pragma mark -
 #pragma mark - 获取Cookie
@@ -474,7 +614,7 @@
 	}
 }
 
--(void)clean{
+-(void)clean {
 	if (httpDict) {
 		NSArray *arr = [httpDict allValues];
 		for (EUExXmlHttp *hobj in arr){
