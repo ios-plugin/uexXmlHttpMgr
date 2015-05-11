@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.5" build = "5">
-        <info>5:uexXmlHttpMgr.open第四个参数timeOut为空或为0时默认请求超时时间为30*1000</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.5" build = "6">
+        <info>6:新增getCookie接口</info>
+        <build>5:uexXmlHttpMgr.open第四个参数timeOut为空或为0时默认请求超时时间为30*1000</build>
         <build>4:使用新版Xcode重新编译,支持arm64</build>
         <build>3:uexXmlHttpMgr修改PUT请求,DELETE请求</build>
         <build>2:修改上药项目的bug，去掉对https的判断</build>
