@@ -22,6 +22,6 @@ enum onDataStauts {
 	NSMutableDictionary *httpDict;
 }
 @property(nonatomic,retain)NSMutableDictionary *httpDict;
--(void)uexOnHttpMgrWithOpId:(int)inOpId status:(int)inStatus data:(NSString *)inData requestCode:(int)requestCode;
+-(void)uexOnHttpMgrWithOpId:(int)inOpId status:(int)inStatus data:(NSString*)inData requestCode:(int)requestCode json:(NSString *)json;
 -(void)uexOnHttpMgrProgress:(int)inOpId progress:(int)inProgress;
 @end
