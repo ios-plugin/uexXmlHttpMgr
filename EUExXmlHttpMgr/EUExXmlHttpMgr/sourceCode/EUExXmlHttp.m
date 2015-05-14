@@ -203,9 +203,11 @@
     
     NSString * responseStatusCode = [NSString stringWithFormat:@"%d",requestCode];
     
+    NSDictionary * responseHeaders = [NSDictionary dictionary];
     if (request.responseHeaders) {
-        [cbDic setObject:request.responseHeaders forKey:@"responseHeaders"];
+        responseHeaders = request.responseHeaders;
     }
+    [cbDic setObject:responseHeaders forKey:@"responseHeaders"];
     
     if (responseStatusCode) {
         [cbDic setObject:responseStatusCode forKey:@"responseStatusCode"];
@@ -226,7 +228,8 @@
     NSString * cbJson = [cbDic JSONFragment];
     
     if (requestCode == 0) {
-        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:-1 data:recString requestCode:requestCode json:cbJson];
+        requestCode = -1;
+        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:-1 data:responseError requestCode:requestCode json:@""];
     } else {
         [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:1 data:recString requestCode:requestCode json:cbJson];
     }
@@ -280,9 +283,11 @@
     
     NSString * responseStatusCode = [NSString stringWithFormat:@"%d",requestCode];
     
+    NSDictionary * responseHeaders = [NSDictionary dictionary];
     if (request.responseHeaders) {
-        [cbDic setObject:request.responseHeaders forKey:@"responseHeaders"];
+        responseHeaders = request.responseHeaders;
     }
+    [cbDic setObject:responseHeaders forKey:@"responseHeaders"];
     
     if (responseStatusCode) {
         [cbDic setObject:responseStatusCode forKey:@"responseStatusCode"];
