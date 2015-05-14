@@ -14,6 +14,7 @@
 #import "BUtility.h"
 #import "WWidget.h"
 #import "EBrowserView.h"
+#import "JSON.h"
 
 @implementation EUExXmlHttp
 @synthesize httpMethod;
@@ -148,8 +149,91 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request{
+    
+    NSString * recString = nil;
+    
+    if (receiveData) {
+        
+        if ([request isResponseCompressed]) {
+            
+            NSError * error = nil;
+            NSData * data = [ASIDataDecompressor uncompressData:receiveData error:&error];
+            recString = [EUtility transferredString:data];
+            
+        } else {
+            
+            recString = [EUtility transferredString:receiveData];
+            
+            if (recString) {
+                
+            } else {
+                
+                recString = request.responseString;
+                
+                if (recString) {
+                    
+                } else {
+                    
+                    recString = [EUtility transferredString:[request responseData]];
+                    
+                }
+                
+            }
+            
+        }
+        
+    } else {
+        
+        recString = request.responseString;
+        
+        if (recString) {
+            
+        } else {
+            
+            recString = [EUtility transferredString:[request responseData]];
+            
+        }
+        
+    }
+
     int requestCode = request.responseStatusCode;
-	[euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:-1 data:[[request error] localizedDescription] requestCode:requestCode];
+    
+    NSMutableDictionary * cbDic = [NSMutableDictionary dictionary];
+    
+    NSString * responseStatusCode = [NSString stringWithFormat:@"%d",requestCode];
+    
+    NSDictionary * responseHeaders = [NSDictionary dictionary];
+    if (request.responseHeaders) {
+        responseHeaders = request.responseHeaders;
+    }
+    [cbDic setObject:responseHeaders forKey:@"responseHeaders"];
+    
+    if (responseStatusCode) {
+        [cbDic setObject:responseStatusCode forKey:@"responseStatusCode"];
+    }
+    
+    NSString * responseStatusMessage = @"";
+    if (request.responseStatusMessage) {
+        responseStatusMessage = request.responseStatusMessage;
+    }
+    [cbDic setObject:responseStatusMessage forKey:@"responseStatusMessage"];
+    
+    NSString * responseError = @"";
+    if (request.error) {
+        responseError = [request.error localizedDescription];
+    }
+    [cbDic setObject:responseError forKey:@"responseError"];
+    
+    NSString * cbJson = [cbDic JSONFragment];
+    
+    if (requestCode == 0) {
+        requestCode = -1;
+        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:-1 data:responseError requestCode:requestCode json:@""];
+    } else {
+        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:1 data:recString requestCode:requestCode json:cbJson];
+    }
+	
+    
 }
 
 -(void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data{
@@ -161,7 +245,7 @@
 		NSInteger percent = (NSInteger)receiveLen*100/(receiveTotalLength);
 		NSString *progress = [NSString stringWithFormat:@"%d",percent];
         int requestCode = request.responseStatusCode;
-		[euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:0 data:progress requestCode:requestCode];
+//		[euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:0 data:progress requestCode:requestCode];
 	}
 }
 
@@ -193,11 +277,47 @@
         recString = [EUtility transferredString:[request responseData]];
     }
     int requestCode = request.responseStatusCode;
-    if (recString) {
-        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:1 data:recString requestCode:requestCode];
+    
+    NSMutableDictionary * cbDic = [NSMutableDictionary dictionary];
+    
+    NSString * responseStatusCode = [NSString stringWithFormat:@"%d",requestCode];
+    
+    NSDictionary * responseHeaders = [NSDictionary dictionary];
+    if (request.responseHeaders) {
+        responseHeaders = request.responseHeaders;
+    }
+    [cbDic setObject:responseHeaders forKey:@"responseHeaders"];
+    
+    if (responseStatusCode) {
+        [cbDic setObject:responseStatusCode forKey:@"responseStatusCode"];
+    }
+    
+    NSString * responseStatusMessage = @"";
+    if (request.responseStatusMessage) {
+        responseStatusMessage = request.responseStatusMessage;
+    }
+    [cbDic setObject:responseStatusMessage forKey:@"responseStatusMessage"];
+    
+    NSString * responseError = @"";
+    if (request.error) {
+        responseError = [request.error localizedDescription];
+    }
+    [cbDic setObject:responseError forKey:@"responseError"];
+
+    
+    NSString * cbJson = [cbDic JSONFragment];
+    
+    
+    if (cbJson) {
+        
         [euexObj uexOnHttpMgrProgress:[self.httpID intValue] progress:100];
-    }else{
-        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:-1 data:[[request error] localizedDescription] requestCode:requestCode];
+        
+        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:1 data:recString requestCode:requestCode json:cbJson];
+        
+    } else {
+        
+        [euexObj uexOnHttpMgrWithOpId:[self.httpID intValue] status:-1 data:[[request error] localizedDescription] requestCode:requestCode json:@""];
+        
     }
 }
 

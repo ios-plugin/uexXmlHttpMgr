@@ -442,8 +442,8 @@
 	[self.meBrwView stringByEvaluatingJavaScriptFromString:jsStr];
 }
 
--(void)uexOnHttpMgrWithOpId:(int)inOpId status:(int)inStatus data:(NSString*)inData requestCode:(int)requestCode{
-	NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.onData!=null){uexXmlHttpMgr.onData(%d,%d,\'%@\',%d)}",inOpId,inStatus,inData,requestCode];
+-(void)uexOnHttpMgrWithOpId:(int)inOpId status:(int)inStatus data:(NSString*)inData requestCode:(int)requestCode json:(NSString *)json{
+	NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.onData!=null){uexXmlHttpMgr.onData(%d,%d,\'%@\',%d,\'%@\')}",inOpId,inStatus,inData,requestCode,json];
 	[self.meBrwView stringByEvaluatingJavaScriptFromString:jsStr];
 }
 
