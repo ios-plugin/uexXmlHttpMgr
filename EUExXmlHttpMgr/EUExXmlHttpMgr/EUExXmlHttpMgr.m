@@ -379,6 +379,46 @@
 }
 
 #pragma mark -
+#pragma mark - 清除Cookie
+
+-(void)clearCookie:(NSMutableArray *)inArguments {
+    
+    if ([inArguments count] < 1) {
+        
+        NSArray * cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        
+        for (int i = 0; i < [cookies count]; i++) {
+            
+            NSHTTPCookie * cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+            
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+            
+        }
+        
+        
+    } else {
+        
+        NSURL * url = [NSURL URLWithString:[inArguments objectAtIndex:0]];
+        
+        if (url) {
+            
+            NSArray * cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+            
+            for (int i = 0; i < [cookies count]; i++) {
+                
+                NSHTTPCookie * cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+                
+                [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
+#pragma mark -
 #pragma mark - 获取Cookie
 
 -(void)getCookie:(NSMutableArray *)inArguments {

@@ -11,5 +11,6 @@
         <method name="setCertificate"></method>
         <method name="close"></method>
         <method name="getCookie"></method>
+        <method name="clearCookie"></method>
 	</plugin>
 </uexplugins>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.7" build = "7">
-        <info>7:onData添加第五个参数是服务器response的数据，方便调试</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.8" build = "8">
+        <info>8:新增clearCookie接口</info>
+        <build>7:onData添加第五个参数是服务器response的数据，方便调试</build>
         <build>6:新增getCookie接口</build>
         <build>5:uexXmlHttpMgr.open第四个参数timeOut为空或为0时默认请求超时时间为30*1000</build>
         <build>4:使用新版Xcode重新编译,支持arm64</build>
