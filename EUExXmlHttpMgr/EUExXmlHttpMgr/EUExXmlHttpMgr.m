@@ -88,7 +88,7 @@
         NSString *inTime = [inArguments objectAtIndex:3];
         EUExXmlHttp *httpObj = [httpDict objectForKey:inOpId];
         if (httpObj) {
-            [self uexOnHttpMgrWithOpId:[inOpId intValue] status:-1 data:@"对象已存在，不能重复创建" requestCode:0];
+            [self uexOnHttpMgrWithOpId:[inOpId intValue] status:-1 data:@"对象已存在，不能重复创建" requestCode:0 json:@""];
             return;
         }else {
             httpObj = [[EUExXmlHttp alloc] init];
