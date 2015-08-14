@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.8" build = "8">
-        <info>8:新增clearCookie接口</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.9" build = "9">
+        <info>9:时间戳改为毫秒</info>
+        <build>8:新增clearCookie接口</build>
         <build>7:onData添加第五个参数是服务器response的数据，方便调试</build>
         <build>6:新增getCookie接口</build>
         <build>5:uexXmlHttpMgr.open第四个参数timeOut为空或为0时默认请求超时时间为30*1000</build>
