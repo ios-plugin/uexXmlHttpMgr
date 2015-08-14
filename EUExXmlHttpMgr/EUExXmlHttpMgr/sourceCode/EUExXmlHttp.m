@@ -113,13 +113,14 @@
 #pragma mark -
 #pragma mark - 获得当前时间戳
 
--(NSString *)getCurrentTS{
-    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate  date] timeIntervalSince1970]];
+- (NSString *)getCurrentTS {
+    
+    unsigned long long time = [[NSDate  date] timeIntervalSince1970] * 1000;
+    
+    NSString * timeSp = [NSString stringWithFormat:@"%lld",time];
+    
     return timeSp;
-//    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-//    NSTimeInterval a = [dat timeIntervalSince1970]*1000;
-//    NSString *timeString = [NSString stringWithFormat:@"%d",a];//转为字符型
-//    return timeString;
+
 }
 
 #pragma mark -
@@ -254,7 +255,7 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request{
-	NSString *recString = nil;
+    NSString *recString = nil;
     if (receiveData) {
         if ([request isResponseCompressed]) {
             NSError *error = nil;
