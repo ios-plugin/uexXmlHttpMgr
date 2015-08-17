@@ -1,15 +1,28 @@
-//
-//  WWidget.h
-//  WBPalm
-//
-//  Created by 邹 达 on 11-10-20.
-//  Copyright 2011 zywx. All rights reserved.
-//
+/*
+ *  Copyright (C) 2014 The AppCan Open Source Project.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ 
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 #import <Foundation/Foundation.h>
 
 #define F_WWIDGET_NO_OBFUSCATION	0
 #define F_WWIDGET_OBFUSCATION		1
+
+#define F_WWIDGET_NO_ENCRYPTCJ      0
+#define F_WWIDGET_ENCRYPTCJ         1
 
 #define F_WWIDGET_SPACEWIDGET		0
 #define F_WWIDGET_MAINWIDGET		1
@@ -70,6 +83,7 @@
 	int openAdStatus;
 	//preload
 	int preload;
+     NSString * appKey;
 	
 }
 -(BOOL)getMySpaceStatus;
@@ -84,6 +98,7 @@
 @property (nonatomic,retain)	NSString *widgetOneId;
 @property (nonatomic,retain)	NSString *widgetId;
 @property (nonatomic,retain)	NSString *appId;
+@property (nonatomic,retain)	NSString *appKey;
 @property (nonatomic,retain)	NSString *widgetName;
 @property (nonatomic,retain)	NSString *ver;
 @property (nonatomic,retain)	NSString *channelCode;
@@ -98,4 +113,7 @@
 @property (nonatomic,retain)	NSString *email;
 @property (nonatomic,retain)	NSString *author;
 @property (nonatomic,retain)	NSString *license;
+@property (nonatomic,assign)    BOOL isDebug;
+@property (nonatomic, assign) NSInteger enctryptcj;
+
 @end

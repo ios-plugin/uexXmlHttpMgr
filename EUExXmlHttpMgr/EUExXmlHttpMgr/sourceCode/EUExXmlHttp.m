@@ -329,7 +329,13 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     WWidget *curWgt = euexObj.meBrwView.mwWgt;
     NSString *time = [self getCurrentTS];
-    NSString *str = [NSString stringWithFormat:@"%@:%@:%@",curWgt.appId,[BUtility appKey],time];
+    NSString *appKey = nil;
+    if (curWgt.appKey) {
+        appKey = [NSString stringWithFormat:@"%@",curWgt.appKey];
+    }else{
+        appKey = [NSString stringWithFormat:@"%@",curWgt.widgetOneId];
+    }
+    NSString *str = [NSString stringWithFormat:@"%@:%@:%@",curWgt.appId,appKey,time];
     str = [self md5:str];
     str = [NSString stringWithFormat:@"md5=%@;ts=%@;",str,time];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:asiRequest.requestHeaders];

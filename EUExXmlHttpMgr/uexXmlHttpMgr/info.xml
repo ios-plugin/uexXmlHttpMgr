@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.9" build = "9">
-        <info>9:时间戳改为毫秒</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.10" build = "10">
+    	 <info>10:修改获取appkey的方法</info>
+        <build>9:时间戳改为毫秒</build>
         <build>8:新增clearCookie接口</build>
         <build>7:onData添加第五个参数是服务器response的数据，方便调试</build>
         <build>6:新增getCookie接口</build>
