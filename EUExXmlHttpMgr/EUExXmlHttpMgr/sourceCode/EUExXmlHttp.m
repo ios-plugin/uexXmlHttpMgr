@@ -15,6 +15,9 @@
 #import "WWidget.h"
 #import "EBrowserView.h"
 #import "JSON.h"
+#import "WWidgetMgr.h"
+#import "ACEBaseViewController.h"
+#import "EBrowserController.h"
 
 @implementation EUExXmlHttp
 @synthesize httpMethod;
@@ -329,13 +332,30 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     WWidget *curWgt = euexObj.meBrwView.mwWgt;
     NSString *time = [self getCurrentTS];
-    NSString *appKey = nil;
-    if (curWgt.appKey) {
-        appKey = [NSString stringWithFormat:@"%@",curWgt.appKey];
-    }else{
-        appKey = [NSString stringWithFormat:@"%@",curWgt.widgetOneId];
+    NSString *appKey = @"";
+    NSString * appId = @"";
+    
+    NSString * pluginStr = @"widget/plugin";
+    if ([curWgt.indexUrl rangeOfString:pluginStr].length == [pluginStr length]) {
+        WWidgetMgr *wgtMgr = euexObj.meBrwView.meBrwCtrler.mwWgtMgr;
+        WWidget *mainWgt = [wgtMgr mainWidget];
+        
+        appId = mainWgt.appId;
+        appKey = mainWgt.widgetOneId;
+        
+        
+    } else {
+        if (curWgt.appKey) {
+            appKey = [NSString stringWithFormat:@"%@",curWgt.appKey];
+        }else{
+            appKey = [NSString stringWithFormat:@"%@",curWgt.widgetOneId];
+        }
+        appId = curWgt.appId;
     }
-    NSString *str = [NSString stringWithFormat:@"%@:%@:%@",curWgt.appId,appKey,time];
+    
+    
+    
+    NSString *str = [NSString stringWithFormat:@"%@:%@:%@",appId,appKey,time];
     str = [self md5:str];
     str = [NSString stringWithFormat:@"md5=%@;ts=%@;",str,time];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:asiRequest.requestHeaders];
