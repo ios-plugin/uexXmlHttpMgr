@@ -33,6 +33,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2DC45B7E1B9DA34500E7A289 /* ACEBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEBaseViewController.h; sourceTree = "<group>"; };
+		2DC45B7F1B9DA34500E7A289 /* EBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserController.h; sourceTree = "<group>"; };
+		2DC45B801B9DA34500E7A289 /* WWidgetMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidgetMgr.h; sourceTree = "<group>"; };
 		3CDA1D2618C19BBD00AA00C7 /* uexXmlHttpMgr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = uexXmlHttpMgr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDA1D2918C19BBD00AA00C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3CDA1D8618C19BE200AA00C7 /* libAppCanEngine_IOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppCanEngine_IOS.a; path = ../libAppCanEngine_IOS.a; sourceTree = "<group>"; };
@@ -147,6 +150,9 @@
 		3CDA1D9618C19D2800AA00C7 /* engineHeader */ = {
 			isa = PBXGroup;
 			children = (
+				2DC45B7E1B9DA34500E7A289 /* ACEBaseViewController.h */,
+				2DC45B7F1B9DA34500E7A289 /* EBrowserController.h */,
+				2DC45B801B9DA34500E7A289 /* WWidgetMgr.h */,
 				A05A21E1193323B000BC4497 /* EBrowserView.h */,
 				A05A21E2193323B000BC4497 /* WWidget.h */,
 				A012DB0419011643005A46C1 /* BUtility.h */,
