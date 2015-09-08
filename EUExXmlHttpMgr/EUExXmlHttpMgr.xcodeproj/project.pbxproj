@@ -58,6 +58,9 @@
 		034BF5C318B2EC380074D5B7 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		034BF5C418B2EC380074D5B7 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		034BF5C518B2EC380074D5B7 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		2D6218F81B8B40A00075325A /* ACEBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEBaseViewController.h; sourceTree = "<group>"; };
+		2D6218F91B8B40A00075325A /* EBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserController.h; sourceTree = "<group>"; };
+		2D6218FA1B8B40A00075325A /* WWidgetMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidgetMgr.h; sourceTree = "<group>"; };
 		A012DB03190115CB005A46C1 /* BUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUtility.h; sourceTree = "<group>"; };
 		A05A21DF193323A100BC4497 /* EBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserView.h; sourceTree = "<group>"; };
 		A05A21E0193323A100BC4497 /* WWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidget.h; sourceTree = "<group>"; };
@@ -123,6 +126,9 @@
 		034BF59B18B2EC380074D5B7 /* engineHeader */ = {
 			isa = PBXGroup;
 			children = (
+				2D6218F81B8B40A00075325A /* ACEBaseViewController.h */,
+				2D6218F91B8B40A00075325A /* EBrowserController.h */,
+				2D6218FA1B8B40A00075325A /* WWidgetMgr.h */,
 				A05A21DF193323A100BC4497 /* EBrowserView.h */,
 				A05A21E0193323A100BC4497 /* WWidget.h */,
 				A012DB03190115CB005A46C1 /* BUtility.h */,

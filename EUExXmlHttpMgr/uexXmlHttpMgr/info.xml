@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.10" build = "10">
-    	 <info>10:修改获取appkey的方法</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.11" build = "11">
+        <info>11:plugin目录下的子widget使用主widget的id和key做校验</info>
+    	 <build>10:修改获取appkey的方法</build>
         <build>9:时间戳改为毫秒</build>
         <build>8:新增clearCookie接口</build>
         <build>7:onData添加第五个参数是服务器response的数据，方便调试</build>
