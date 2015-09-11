@@ -329,39 +329,52 @@
 #pragma mark - 设置请求方式
 
 -(void)requestIsVerify{
+    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
     WWidget *curWgt = euexObj.meBrwView.mwWgt;
+    
     NSString *time = [self getCurrentTS];
     NSString *appKey = @"";
     NSString * appId = @"";
-    
     NSString * pluginStr = @"widget/plugin";
+    
     if ([curWgt.indexUrl rangeOfString:pluginStr].length == [pluginStr length]) {
+        
         WWidgetMgr *wgtMgr = euexObj.meBrwView.meBrwCtrler.mwWgtMgr;
         WWidget *mainWgt = [wgtMgr mainWidget];
         
         appId = mainWgt.appId;
         appKey = mainWgt.widgetOneId;
         
-        
     } else {
+        
         if (curWgt.appKey) {
+            
             appKey = [NSString stringWithFormat:@"%@",curWgt.appKey];
-        }else{
+            
+        } else {
+            
             appKey = [NSString stringWithFormat:@"%@",curWgt.widgetOneId];
+            
         }
+        
         appId = curWgt.appId;
+        
     }
     
-    
-    
     NSString *str = [NSString stringWithFormat:@"%@:%@:%@",appId,appKey,time];
+    
     str = [self md5:str];
     str = [NSString stringWithFormat:@"md5=%@;ts=%@;",str,time];
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:asiRequest.requestHeaders];
     [dict setObject:str forKey:@"appverify"];
+    [dict setObject:appId forKey:@"x-mas-app-id"];
+    
     [asiRequest setRequestHeaders:dict];
     [pool release];
+    
 }
 
 -(void)requestForPostRequest{
