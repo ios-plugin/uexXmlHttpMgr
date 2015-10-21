@@ -10,7 +10,18 @@
 		034BF54018B2EAED0074D5B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034BF53F18B2EAED0074D5B7 /* Foundation.framework */; };
 		034BF5C618B2EC380074D5B7 /* EUExXmlHttpMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 034BF5A118B2EC380074D5B7 /* EUExXmlHttpMgr.m */; };
 		034BF5D018B2EC380074D5B7 /* EUExXmlHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 034BF5BB18B2EC380074D5B7 /* EUExXmlHttp.m */; };
+		3C1AD5921BD5F3E20091D2A1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1AD5941BD5F3E20091D2A1 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3C1AD58E1BD5F3CE0091D2A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 034BF53418B2EAED0074D5B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C1AD5871BD5F39A0091D2A1;
+			remoteInfo = uexXmlHttpMgrBundle;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		034BF53A18B2EAED0074D5B7 /* CopyFiles */ = {
@@ -61,6 +72,10 @@
 		2D6218F81B8B40A00075325A /* ACEBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEBaseViewController.h; sourceTree = "<group>"; };
 		2D6218F91B8B40A00075325A /* EBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserController.h; sourceTree = "<group>"; };
 		2D6218FA1B8B40A00075325A /* WWidgetMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidgetMgr.h; sourceTree = "<group>"; };
+		3C1AD5881BD5F39A0091D2A1 /* uexXmlHttpMgr.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uexXmlHttpMgr.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C1AD58A1BD5F39A0091D2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C1AD5931BD5F3E20091D2A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3C1AD5951BD5F3EF0091D2A1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A012DB03190115CB005A46C1 /* BUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUtility.h; sourceTree = "<group>"; };
 		A05A21DF193323A100BC4497 /* EBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserView.h; sourceTree = "<group>"; };
 		A05A21E0193323A100BC4497 /* WWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidget.h; sourceTree = "<group>"; };
@@ -75,17 +90,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3C1AD5851BD5F39A0091D2A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		034BF53318B2EAED0074D5B7 = {
 			isa = PBXGroup;
 			children = (
+				3C1AD5941BD5F3E20091D2A1 /* Localizable.strings */,
 				034BF59B18B2EC380074D5B7 /* engineHeader */,
 				034BF5A018B2EC380074D5B7 /* EUExXmlHttpMgr.h */,
 				034BF5A118B2EC380074D5B7 /* EUExXmlHttpMgr.m */,
 				034BF5A218B2EC380074D5B7 /* sourceCode */,
 				034BF54118B2EAED0074D5B7 /* EUExXmlHttpMgr */,
+				3C1AD5891BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */,
 				034BF53E18B2EAED0074D5B7 /* Frameworks */,
 				034BF53D18B2EAED0074D5B7 /* Products */,
 			);
@@ -95,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				034BF53C18B2EAED0074D5B7 /* libuexXmlHttpMgr.a */,
+				3C1AD5881BD5F39A0091D2A1 /* uexXmlHttpMgr.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,6 +214,14 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		3C1AD5891BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */ = {
+			isa = PBXGroup;
+			children = (
+				3C1AD58A1BD5F39A0091D2A1 /* Info.plist */,
+			);
+			path = uexXmlHttpMgrBundle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -203,11 +236,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				3C1AD58F1BD5F3CE0091D2A1 /* PBXTargetDependency */,
 			);
 			name = EUExXmlHttpMgr;
 			productName = EUExXmlHttpMgr;
 			productReference = 034BF53C18B2EAED0074D5B7 /* libuexXmlHttpMgr.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		3C1AD5871BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C1AD58D1BD5F39A0091D2A1 /* Build configuration list for PBXNativeTarget "uexXmlHttpMgrBundle" */;
+			buildPhases = (
+				3C1AD5841BD5F39A0091D2A1 /* Sources */,
+				3C1AD5851BD5F39A0091D2A1 /* Frameworks */,
+				3C1AD5861BD5F39A0091D2A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = uexXmlHttpMgrBundle;
+			productName = uexXmlHttpMgrBundle;
+			productReference = 3C1AD5881BD5F39A0091D2A1 /* uexXmlHttpMgr.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -217,6 +268,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = zhengcuan;
+				TargetAttributes = {
+					3C1AD5871BD5F39A0091D2A1 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
 			};
 			buildConfigurationList = 034BF53718B2EAED0074D5B7 /* Build configuration list for PBXProject "EUExXmlHttpMgr" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -224,6 +280,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 034BF53318B2EAED0074D5B7;
 			productRefGroup = 034BF53D18B2EAED0074D5B7 /* Products */;
@@ -231,9 +288,21 @@
 			projectRoot = "";
 			targets = (
 				034BF53B18B2EAED0074D5B7 /* EUExXmlHttpMgr */,
+				3C1AD5871BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3C1AD5861BD5F39A0091D2A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C1AD5921BD5F3E20091D2A1 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		034BF53818B2EAED0074D5B7 /* Sources */ = {
@@ -245,7 +314,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3C1AD5841BD5F39A0091D2A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C1AD58F1BD5F3CE0091D2A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C1AD5871BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */;
+			targetProxy = 3C1AD58E1BD5F3CE0091D2A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3C1AD5941BD5F3E20091D2A1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3C1AD5931BD5F3E20091D2A1 /* en */,
+				3C1AD5951BD5F3EF0091D2A1 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		034BF55D18B2EAED0074D5B7 /* Debug */ = {
@@ -349,6 +445,53 @@
 			};
 			name = Release;
 		};
+		3C1AD58B1BD5F39A0091D2A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = uexXmlHttpMgrBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zywx.uexXmlHttpMgrBundle;
+				PRODUCT_MODULE_NAME = uexXmlHttpMgr;
+				PRODUCT_NAME = uexXmlHttpMgr;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		3C1AD58C1BD5F39A0091D2A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = uexXmlHttpMgrBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zywx.uexXmlHttpMgrBundle;
+				PRODUCT_MODULE_NAME = uexXmlHttpMgr;
+				PRODUCT_NAME = uexXmlHttpMgr;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -369,6 +512,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3C1AD58D1BD5F39A0091D2A1 /* Build configuration list for PBXNativeTarget "uexXmlHttpMgrBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C1AD58B1BD5F39A0091D2A1 /* Debug */,
+				3C1AD58C1BD5F39A0091D2A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
