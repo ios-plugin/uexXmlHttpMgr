@@ -10,7 +10,7 @@
 		034BF54018B2EAED0074D5B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034BF53F18B2EAED0074D5B7 /* Foundation.framework */; };
 		034BF5C618B2EC380074D5B7 /* EUExXmlHttpMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 034BF5A118B2EC380074D5B7 /* EUExXmlHttpMgr.m */; };
 		034BF5D018B2EC380074D5B7 /* EUExXmlHttp.m in Sources */ = {isa = PBXBuildFile; fileRef = 034BF5BB18B2EC380074D5B7 /* EUExXmlHttp.m */; };
-		3C1C09D01BE062FE00571E72 /* Localizations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1C09D21BE062FE00571E72 /* Localizations.strings */; };
+		3C1C09D01BE062FE00571E72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1C09D21BE062FE00571E72 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +73,8 @@
 		2D6218F91B8B40A00075325A /* EBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserController.h; sourceTree = "<group>"; };
 		2D6218FA1B8B40A00075325A /* WWidgetMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidgetMgr.h; sourceTree = "<group>"; };
 		3C1AD5881BD5F39A0091D2A1 /* uexXmlHttpMgr.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uexXmlHttpMgr.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C1C09D11BE062FE00571E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizations.strings; sourceTree = "<group>"; };
-		3C1C09D31BE062FF00571E72 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizations.strings"; sourceTree = "<group>"; };
+		3C1C09D11BE062FE00571E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3C1C09D31BE062FF00571E72 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A012DB03190115CB005A46C1 /* BUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUtility.h; sourceTree = "<group>"; };
 		A05A21DF193323A100BC4497 /* EBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserView.h; sourceTree = "<group>"; };
 		A05A21E0193323A100BC4497 /* WWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidget.h; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		3C1AD5891BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */ = {
 			isa = PBXGroup;
 			children = (
-				3C1C09D21BE062FE00571E72 /* Localizations.strings */,
+				3C1C09D21BE062FE00571E72 /* Localizable.strings */,
 			);
 			path = uexXmlHttpMgrBundle;
 			sourceTree = "<group>";
@@ -296,7 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C1C09D01BE062FE00571E72 /* Localizations.strings in Resources */,
+				3C1C09D01BE062FE00571E72 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,13 +330,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3C1C09D21BE062FE00571E72 /* Localizations.strings */ = {
+		3C1C09D21BE062FE00571E72 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3C1C09D11BE062FE00571E72 /* en */,
 				3C1C09D31BE062FF00571E72 /* zh-Hans */,
 			);
-			name = Localizations.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
