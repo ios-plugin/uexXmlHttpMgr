@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.13" build = "13">
-        <info>13:添加国际化支持</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.14" build = "14">
+        <info>14:删除info.plist</info>
+        <build>13:添加国际化支持</build>
         <build>12:setAppVerify新增加appId的信息</build>
         <build>11:plugin目录下的子widget使用主widget的id和key做校验</build>
         <build>10:修改获取appkey的方法</build>
