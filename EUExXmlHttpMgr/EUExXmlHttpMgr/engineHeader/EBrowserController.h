@@ -46,7 +46,6 @@
 	EBrowserMainFrame *meBrwMainFrm;
 	WWidgetMgr *mwWgtMgr;
 	NSLock *mSplashLock;
-	BOOL mSplashFired;
 	BallView *ballView;
 	int mFlag;
 	BOOL ballHasShow; 
@@ -59,7 +58,6 @@
 @property (nonatomic, retain) EBrowserMainFrame *meBrwMainFrm;
 @property (nonatomic, retain) EBrowser *meBrw;
 @property (nonatomic, retain) WWidgetMgr *mwWgtMgr;
-@property (nonatomic, assign) BOOL mSplashFired;
 @property (nonatomic, assign) BOOL ballHasShow;
 @property (nonatomic, assign) int mFlag;
 @property (nonatomic,retain)NSMutableArray *forebidPluginsList;

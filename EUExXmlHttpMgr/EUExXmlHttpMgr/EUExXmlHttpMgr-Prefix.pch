@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "EUtility.h"
 #define UEX_LOCALIZEDSTRING(...) [EUtility uexPlugin:@"uexXmlHttpMgr" localizedString:__VA_ARGS__,nil]
+
 #endif

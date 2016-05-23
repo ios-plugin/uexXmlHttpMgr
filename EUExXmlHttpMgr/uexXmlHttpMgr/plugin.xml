@@ -12,5 +12,6 @@
         <method name="close"></method>
         <method name="getCookie"></method>
         <method name="clearCookie"></method>
+        <method name="setDebugMode"></method>
 	</plugin>
 </uexplugins>
