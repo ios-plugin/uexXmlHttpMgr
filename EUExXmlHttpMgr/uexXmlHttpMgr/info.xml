@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="3.0.15" build = "15">
-        <info>15:添加IDE支持</info>
+    <plugin uexName="uexXmlHttpMgr" version="3.0.16" build = "16">
+        <info>16:用AFNetWorking重构</info>
         <build>14:删除info.plist</build>
         <build>13:添加国际化支持</build>
         <build>12:setAppVerify新增加appId的信息</build>

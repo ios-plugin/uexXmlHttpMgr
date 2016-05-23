@@ -6,26 +6,26 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		DypqnOWXHnnLWqxl8R114ozCABc=
+		JsjxpTTaJMaDNEL7PErGyELF6Zk=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
 		JKbXoT98W7zj86Z2W3qbeHZe/kE=
 		</data>
-		<key>uexXmlHttpMgr.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
+		<key>uexXmlHttpMgr.bundle/en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bB8gMi+5j6JdCE+dH2P0+2F8v+o=
+			MhEIdaNRqwkc2ZuW+ZzqwklanPQ=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>uexXmlHttpMgr.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings</key>
+		<key>uexXmlHttpMgr.bundle/zh-Hans.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			WVqdId3+SuVX/9NaiXIlr4GypKI=
+			GXcKZL8tqWsXu37ErcloML4HX4E=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -34,23 +34,38 @@
 	<key>files2</key>
 	<dict>
 		<key>embedded.mobileprovision</key>
-		<data>
-		JKbXoT98W7zj86Z2W3qbeHZe/kE=
-		</data>
-		<key>uexXmlHttpMgr.bundle/Contents/Resources/en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			bB8gMi+5j6JdCE+dH2P0+2F8v+o=
+			JKbXoT98W7zj86Z2W3qbeHZe/kE=
+			</data>
+			<key>hash2</key>
+			<data>
+			0p8akoZIUNhnEHSrm+cwtP59I1VEbMUe0Gn2IpgCK98=
+			</data>
+		</dict>
+		<key>uexXmlHttpMgr.bundle/en.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MhEIdaNRqwkc2ZuW+ZzqwklanPQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			BYe5wC36824MFFDsz76SjcFmBJcO7gqOi8rGHe53kgo=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
-		<key>uexXmlHttpMgr.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings</key>
+		<key>uexXmlHttpMgr.bundle/zh-Hans.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			WVqdId3+SuVX/9NaiXIlr4GypKI=
+			GXcKZL8tqWsXu37ErcloML4HX4E=
+			</data>
+			<key>hash2</key>
+			<data>
+			/ph9r7DZnqwHxKWUdQAHCK8ojz00Hkst8l96/A6cmeg=
 			</data>
 			<key>optional</key>
 			<true/>
