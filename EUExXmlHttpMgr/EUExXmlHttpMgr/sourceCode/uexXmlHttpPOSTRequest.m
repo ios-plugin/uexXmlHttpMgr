@@ -97,6 +97,7 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
         if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
             self.response = (NSHTTPURLResponse *)task.response;
         }
+        self.status = uexXmlHttpRequestStatusSuccess;
         self.responseObject = responseObject;
         [self.euexObj request:self taskCompleteWithError:nil];
     };
@@ -104,6 +105,7 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
         if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
             self.response = (NSHTTPURLResponse *)task.response;
         }
+        self.status = uexXmlHttpRequestStatusFailed;
         [self.euexObj request:self taskCompleteWithError:error];
     };
     
@@ -142,6 +144,7 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
                                             URLString:self.serverPath
                                             parameters:nil
                                             error:&serializationError];
+            
             if (serializationError) {
                 handleFailureBlock(nil,serializationError);
                 return;
@@ -152,10 +155,11 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
                                           uploadProgress:handleProgressBlock
                                         downloadProgress:nil
                                        completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+
                                            if (error) {
                                                handleFailureBlock(dataTask, error);
                                            }else {
-                                               handleSuccessBlock(dataTask, error);
+                                               handleSuccessBlock(dataTask, responseObject);
                                            }
                                        }];
             [dataTask resume];

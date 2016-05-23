@@ -282,7 +282,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 - (void)request:(__kindof uexXmlHttpRequest *)request taskCompleteWithError:(NSError *)error{
     NSString *responseStr = nil;
     NSHTTPURLResponse *response = request.response;
-    
+
     if ([request.responseObject isKindOfClass:[NSData class]]) {
         responseStr = [[NSString alloc]initWithData:request.responseObject encoding:NSUTF8StringEncoding];
     }
@@ -305,8 +305,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
                     arguments:ACE_ArgsPack(identifier,@(request.status),result,@(statusCode),[responseDict JSONFragment])
                    completion:nil];
     }else{
-        NSString *resultJSON = result ? result.JSONFragment : @"(null)";
-        NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.onData){uexXmlHttpMgr.onData(%@,%@,%@,%@,%@);}",identifier.JSONFragment,@(request.status),resultJSON,@(statusCode),[responseDict JSONFragment].JSONFragment];
+        NSString *resultJSON = result ? [result JSONFragment] : @"(null)";
+        NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.onData){uexXmlHttpMgr.onData(%@,%@,%@,%@,%@);}",identifier,@(request.status),resultJSON,@(statusCode),[responseDict JSONFragment].JSONFragment];
+        NSLog(@"%@",jsStr);
         [EUtility brwView:self.meBrwView evaluateScript:jsStr];
     }
     
@@ -346,7 +347,6 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     NSString *responseStr = nil;
     if ([responseObj isKindOfClass:[NSData class]]) {
         responseStr = [[NSString alloc]initWithData:responseObj encoding:NSUTF8StringEncoding];
-        responseStr = [responseStr JSONFragment];
     }
     if ([responseObj isKindOfClass:[NSDictionary class]] || [responseObj isKindOfClass:[NSArray class]]) {
         responseStr = [responseObj JSONFragment];

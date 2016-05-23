@@ -41,7 +41,7 @@
                   if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
                       self.response = (NSHTTPURLResponse *)task.response;
                   }
-                  
+                  self.status = uexXmlHttpRequestStatusSuccess;
                   self.responseObject = responseObject;
                   [self.euexObj request:self taskCompleteWithError:nil];
               }
@@ -49,11 +49,10 @@
                   if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
                       self.response = (NSHTTPURLResponse *)task.response;
                   }
+                  self.status = uexXmlHttpRequestStatusFailed;
                   [self.euexObj request:self taskCompleteWithError:error];
               }];
 }
 
-- (void)dealloc{
 
-}
 @end
