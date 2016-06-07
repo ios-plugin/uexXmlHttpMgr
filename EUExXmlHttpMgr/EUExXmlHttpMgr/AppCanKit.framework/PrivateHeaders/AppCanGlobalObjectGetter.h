@@ -1,10 +1,10 @@
 /**
  *
- *	@file   	: EUExXmlHttpMgr.h  in EUExXmlHttpMgr
+ *	@file   	: AppCanGlobalObjectGetter.h  in AppCanKit
  *
  *	@author 	: CeriNo 
  * 
- *	@date   	: Created on 16/5/20.
+ *	@date   	: Created on 16/5/31.
  *
  *	@copyright 	: 2016 The AppCan Open Source Project.
  *
@@ -22,7 +22,10 @@
  */
  
 #import <Foundation/Foundation.h>
-#import "uexXmlHttpRequest.h"
-@interface EUExXmlHttpMgr : EUExBase<uexXmlHttpRequestDelegate>
+
+@protocol AppCanGlobalObjectGetter <NSObject>
+
+- (id<AppCanWebViewEngineObject>)getAppCanRootWebViewEngine;
+- (id<AppCanWidgetObject>)getAppCanMainWidget;
 
 @end

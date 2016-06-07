@@ -1,10 +1,10 @@
 /**
  *
- *	@file   	: EUExXmlHttpMgr.h  in EUExXmlHttpMgr
+ *	@file   	: ACNil.h  in AppCanKit
  *
- *	@author 	: CeriNo 
- * 
- *	@date   	: Created on 16/5/20.
+ *	@author 	: CeriNo
+ *
+ *	@date   	: Created on 16/5/25.
  *
  *	@copyright 	: 2016 The AppCan Open Source Project.
  *
@@ -20,9 +20,16 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
+
 #import <Foundation/Foundation.h>
-#import "uexXmlHttpRequest.h"
-@interface EUExXmlHttpMgr : EUExBase<uexXmlHttpRequestDelegate>
+
+/**
+ *  NSNull的替代品
+ *  不会导致unrecogized selector崩溃
+ */
+@interface ACNil : NSProxy
+
+
++ (instancetype)null;
 
 @end

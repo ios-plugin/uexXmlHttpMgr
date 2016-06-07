@@ -23,7 +23,6 @@
 
 #import "uexXmlHttpGETRequest.h"
 #import "EUExXmlHttpMgr.h"
-#import "ACEUtils.h"
 @implementation uexXmlHttpGETRequest
 
 - (uexXmlHttpRequestMethod)method{

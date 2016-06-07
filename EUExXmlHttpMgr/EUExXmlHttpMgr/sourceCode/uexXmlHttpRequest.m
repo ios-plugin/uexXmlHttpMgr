@@ -24,12 +24,11 @@
 #import "uexXmlHttpRequest.h"
 #import "uexXmlHttpGETRequest.h"
 #import "uexXmlHttpPOSTRequest.h"
-#import "ACEUtils.h"
 #import "EUExXmlHttpMgr.h"
 #import "uexXmlHttpHelper.h"
 @implementation uexXmlHttpRequest
 
-+ (instancetype)requestWithMethod:(uexXmlHttpRequestMethod)method identifier:(NSNumber *)identifier euexObj:(EUExXmlHttpMgr *)euexObj{
++ (instancetype)requestWithMethod:(uexXmlHttpRequestMethod)method identifier:(NSString *)identifier euexObj:(EUExXmlHttpMgr *)euexObj{
     __kindof uexXmlHttpRequest *request = nil;
     
     switch (method) {
