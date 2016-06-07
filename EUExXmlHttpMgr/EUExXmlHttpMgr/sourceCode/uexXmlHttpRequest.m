@@ -87,6 +87,7 @@
             return [self.authentication authChallengeDispositionWithSession:session challenge:challenge credential:credential];
         }];
     }else{
+        self.manager.securityPolicy.validatesDomainName = NO;
         self.manager.securityPolicy.allowInvalidCertificates = YES;
     }
     
