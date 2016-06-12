@@ -104,7 +104,12 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 }
 
 - (void)send:(NSMutableArray *)inArguments{
-    ACArgsUnpack(NSString *identifier,ACJSFunctionRef *resultCB,ACJSFunctionRef *progressCB) = inArguments;
+    ACArgsUnpack(NSString *identifier,NSNumber *flagNum,ACJSFunctionRef *resultCB,ACJSFunctionRef *progressCB) = inArguments;
+    NSInteger flag = flagNum.integerValue;
+    switch (flag) {
+        default:
+            break;
+    }
     __kindof uexXmlHttpRequest *request = self.requestDict[identifier];
     request.resultCB = resultCB;
     request.progressCB = progressCB;
