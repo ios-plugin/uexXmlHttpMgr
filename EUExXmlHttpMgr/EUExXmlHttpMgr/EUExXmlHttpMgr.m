@@ -302,7 +302,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     [responseDict setValue:error.localizedDescription forKey:@"responseError"];
     
     UEXLog(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
-    [request.resultCB executeWithArguments:ACArgsPack(@(request.status),result,@(statusCode),[responseDict JSONFragment])];
+    [request.resultCB executeWithArguments:ACArgsPack(@(request.status),result,@(statusCode),responseDict)];
     [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onData" arguments:ACArgsPack(numberArg(identifier),@(request.status),result,@(statusCode),[responseDict JSONFragment])];
     request.resultCB = nil;
     request.progressCB = nil;
