@@ -26,6 +26,7 @@
 #import "uexXmlHttpPOSTRequest.h"
 #import "EUExXmlHttpMgr.h"
 #import "uexXmlHttpHelper.h"
+#import <AppCanKit/ACEXTScope.h>
 @implementation uexXmlHttpRequest
 
 + (instancetype)requestWithMethod:(uexXmlHttpRequestMethod)method identifier:(NSString *)identifier euexObj:(EUExXmlHttpMgr *)euexObj{

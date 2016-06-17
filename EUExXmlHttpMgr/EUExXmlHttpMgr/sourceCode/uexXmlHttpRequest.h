@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import "uexXmlHttpAuthentication.h"
-
+#import <AppCanKit/AppCanKit.h>
 
 
 

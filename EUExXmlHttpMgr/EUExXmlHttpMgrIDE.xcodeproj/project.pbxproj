@@ -59,17 +59,10 @@
 		414E276AE5EA14860977672D /* libstdc++.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = archive.ar; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		417D5D7C2624D93E20C8701C /* libc++.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = archive.ar; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		4229D9A41D06B279003F7E51 /* AppCanKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCanKit.framework; sourceTree = "<group>"; };
-		4282502C1CEEF6A00025E5C2 /* EUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUtility.h; sourceTree = "<group>"; };
 		42C67DD31CF2CF5400D2DF23 /* uexXmlHttpFormFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpFormFile.h; sourceTree = "<group>"; };
 		42C67DD41CF2CF5400D2DF23 /* uexXmlHttpFormFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uexXmlHttpFormFile.m; sourceTree = "<group>"; };
-		42F7EF0E1CEEC719009F14AF /* ACEBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEBaseViewController.h; sourceTree = "<group>"; };
 		42F7EF0F1CEEC719009F14AF /* BUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUtility.h; sourceTree = "<group>"; };
-		42F7EF101CEEC719009F14AF /* EBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserController.h; sourceTree = "<group>"; };
-		42F7EF111CEEC719009F14AF /* EBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserView.h; sourceTree = "<group>"; };
-		42F7EF131CEEC719009F14AF /* EUExBaseDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUExBaseDefine.h; sourceTree = "<group>"; };
 		42F7EF151CEEC719009F14AF /* WidgetOneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetOneDelegate.h; sourceTree = "<group>"; };
-		42F7EF161CEEC719009F14AF /* WWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidget.h; sourceTree = "<group>"; };
-		42F7EF171CEEC719009F14AF /* WWidgetMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidgetMgr.h; sourceTree = "<group>"; };
 		42F7EF331CEEC719009F14AF /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		42F7EF341CEEC719009F14AF /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
 		42F7EF351CEEC719009F14AF /* MD5Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Digest.h; sourceTree = "<group>"; };
@@ -211,15 +204,8 @@
 		42F7EF0D1CEEC719009F14AF /* engineHeader */ = {
 			isa = PBXGroup;
 			children = (
-				4282502C1CEEF6A00025E5C2 /* EUtility.h */,
-				42F7EF0E1CEEC719009F14AF /* ACEBaseViewController.h */,
 				42F7EF0F1CEEC719009F14AF /* BUtility.h */,
-				42F7EF101CEEC719009F14AF /* EBrowserController.h */,
-				42F7EF111CEEC719009F14AF /* EBrowserView.h */,
-				42F7EF131CEEC719009F14AF /* EUExBaseDefine.h */,
 				42F7EF151CEEC719009F14AF /* WidgetOneDelegate.h */,
-				42F7EF161CEEC719009F14AF /* WWidget.h */,
-				42F7EF171CEEC719009F14AF /* WWidgetMgr.h */,
 			);
 			path = engineHeader;
 			sourceTree = "<group>";

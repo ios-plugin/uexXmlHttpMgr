@@ -26,7 +26,7 @@
 #import "uexXmlHttpPOSTRequest.h"
 #import "uexXmlHttpHelper.h"
 #import "JSON.h"
-#import "EUtility.h"
+
 @interface EUExXmlHttpMgr()
 
 @property (nonatomic,strong)NSMutableDictionary<NSString *,__kindof uexXmlHttpRequest *> *requestDict;
@@ -228,12 +228,6 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     [request setPostBody:data];
     return  UEX_TRUE;
 }
-- (void)setDebugMode:(NSMutableArray *)inArguments{
-    if([inArguments count] < 1){
-        return;
-    }
-    [uexXmlHttpHelper setDebugMode:[inArguments[0] boolValue]];
-}
 
 -(void)clearCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
@@ -254,9 +248,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     }
 }
 
--(void)getCookie:(NSMutableArray *)inArguments {
+-(NSString *)getCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
-        return;
+        return nil;
     }
     NSString *httpStr = [inArguments objectAtIndex:0];
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -278,6 +272,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     }
     NSDictionary * cookieDict = [NSDictionary dictionaryWithObject:cookieAll forKey:@"cookie"];
     [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.cbGetCookie" arguments:ACArgsPack([cookieDict ac_JSONFragment])];
+    return cookieAll;
 
 }
 
@@ -301,7 +296,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     [responseDict setValue:[NSHTTPURLResponse localizedStringForStatusCode:statusCode] forKey:@"responseStatusMessage"];
     [responseDict setValue:error.localizedDescription forKey:@"responseError"];
     
-    UEXLog(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
+    ACLogDebug(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
     [request.resultCB executeWithArguments:ACArgsPack(@(request.status),result,@(statusCode),responseDict)];
     [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onData" arguments:ACArgsPack(numberArg(identifier),@(request.status),result,@(statusCode),[responseDict JSONFragment])];
     request.resultCB = nil;
@@ -313,9 +308,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 }
 - (void)request:(__kindof uexXmlHttpRequest *)request sessionInvalidatedWithError:(NSError *)error{
     if (error) {
-        UEXLog(@"->uexXmlHttpMgr request %@ invalidate session FAILED!error:%@",request.identifier,error.localizedDescription);
+        ACLogDebug(@"->uexXmlHttpMgr request %@ invalidate session FAILED!error:%@",request.identifier,error.localizedDescription);
     }else{
-        UEXLog(@"->uexXmlHttpMgr request %@ invalidate session SUCCESS!",request.identifier);
+        ACLogDebug(@"->uexXmlHttpMgr request %@ invalidate session SUCCESS!",request.identifier);
     }
     [self.requestDict removeObjectForKey:request.identifier];
     
@@ -325,7 +320,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
         return;
     }
     uexXmlHttpPOSTRequest *postRequest = (uexXmlHttpPOSTRequest *)request;
-    UEXLog(@"->uexXmlHttpMgr request %@ update progress:%@%%",postRequest.identifier,@(postRequest.percent));
+    ACLogDebug(@"->uexXmlHttpMgr request %@ update progress:%@%%",postRequest.identifier,@(postRequest.percent));
     [request.progressCB executeWithArguments:ACArgsPack(@(postRequest.percent))];
     [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onPostProgress" arguments:ACArgsPack(numberArg(postRequest.identifier),@(postRequest.percent))];
     

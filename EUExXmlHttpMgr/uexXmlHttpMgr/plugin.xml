@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
         <plugin name="uexXmlHttpMgr">
-        <method name="open" sync="true"></method>
+        <method name="open"></method>
         <method name="send"></method>
-        <method name="setBody" sync="true"></method>
-        <method name="setHeaders" sync="true"></method>
-        <method name="setPostData" sync="true"></method>
-        <method name="setAppVerify" sync="true"></method>
-        <method name="setInputStream" sync="true"></method>
-        <method name="setCertificate" sync="true"></method>
-        <method name="close" sync="true"></method>
-        <method name="getCookie" sync="true"></method>
-        <method name="clearCookie" sync="true"></method>
-        <method name="setDebugMode"></method>
+        <method name="setBody"></method>
+        <method name="setHeaders"></method>
+        <method name="setPostData"></method>
+        <method name="setAppVerify"></method>
+        <method name="setInputStream"></method>
+        <method name="setCertificate"></method>
+        <method name="close"></method>
+        <method name="getCookie"></method>
+        <method name="clearCookie"></method>
     </plugin>
 </uexplugins>

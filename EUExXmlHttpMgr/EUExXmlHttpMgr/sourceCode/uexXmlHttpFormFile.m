@@ -24,6 +24,7 @@
 #import "uexXmlHttpFormFile.h"
 #import "uexXmlHttpHelper.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <AppCanKit/AppCanKit.h>
 @interface uexXmlHttpFormFile(){
     dispatch_semaphore_t _lock;
 }
@@ -75,7 +76,7 @@
             self.fileName = representation.filename;
             Unlock();
         } failureBlock:^(NSError *error) {
-            UEXLog(@"fetch asset image error:%@",error.localizedDescription);
+            ACLogWarning(@"fetch asset image error:%@",error.localizedDescription);
             Unlock();
         }];
     });

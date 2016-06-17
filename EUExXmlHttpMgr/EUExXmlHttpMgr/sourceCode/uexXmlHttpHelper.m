@@ -24,35 +24,13 @@
 #import "uexXmlHttpHelper.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <CommonCrypto/CommonCrypto.h>
-
-
-
-#ifdef DEBUG
-#define XCODE_DEBUG_MODE 1
-#else
-#define XCODE_DEBUG_MODE 0
-#endif
-
-static BOOL debugEnabled = NO;
+#import <AppCanKit/AppCanKit.h>
 
 
 
 @implementation uexXmlHttpHelper
-void uexXmlHttpLog(NSString *format,...){
-    va_list list;
-    va_start(list,format);
-    if (debugEnabled || XCODE_DEBUG_MODE ) {
-        NSLogv(format,list);
-    }
-    va_end(list);
-}
 
 
-
-
-+ (void)setDebugMode:(BOOL)isEnabled{
-    debugEnabled = isEnabled;
-}
 
 
 

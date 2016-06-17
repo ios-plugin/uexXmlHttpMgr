@@ -25,18 +25,15 @@
 
 
 
-#define UEXLog(...) uexXmlHttpLog(__VA_ARGS__);
-#define UEXLogParameterError() UEXLog(@"%s ERROR!Invalid parameter!",__func__)
+
+
 
 @class EUExBase;
 @interface uexXmlHttpHelper : NSObject
 
-void uexXmlHttpLog(NSString *format,...);
-
 
 
 + (NSDictionary<NSString *,NSString *> *)AppCanHTTPHeadersWithEUExObj:(__kindof EUExBase *)euexObj;
-+ (void)setDebugMode:(BOOL)isEnabled;
 + (NSString *)MIMETypeForPathExtension:(NSString *)ext;
 
 

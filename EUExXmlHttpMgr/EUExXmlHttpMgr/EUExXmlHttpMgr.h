@@ -23,6 +23,7 @@
  
 #import <Foundation/Foundation.h>
 #import "uexXmlHttpRequest.h"
+#import <AppCanKit/AppCanKit.h>
 @interface EUExXmlHttpMgr : EUExBase<uexXmlHttpRequestDelegate>
 
 @end
