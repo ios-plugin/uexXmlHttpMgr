@@ -184,7 +184,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     id obj = inArguments[3];
     switch (dataType) {
         case 0:{
-            if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]]) {
+            if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]] || [obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]]) {
                 [request setPostData:obj forField:field];
             }
             break;
