@@ -40,6 +40,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 #define UEX_FALSE @(NO)
 #define UEX_TRUE @(YES)
 
+static inline NSString * newID(){
+    return [NSUUID UUID].UUIDString;
+}
 
 + (void)initialize{
     static dispatch_once_t onceToken;
@@ -78,6 +81,31 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 //}
 
 #pragma mark - UEXAPI
+
+
+- (NSString *)create:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSDictionary *info) = inArguments;
+    NSString *methodStr = stringArg(info[@"method"]).lowercaseString;
+    NSString *url = stringArg(info[@"url"]);
+    NSNumber *timeoutNum = numberArg(info[@"timeout"]) ?: @(30 * 1000);
+    NSString *identifier = stringArg(info[@"id"]) ?: newID();
+    if (!identifier || [self.requestDict.allKeys containsObject:identifier] || !methodStr || ![HTTPMethods.allKeys containsObject:methodStr] || !url || url.length == 0) {
+        return nil;
+    }
+    uexXmlHttpRequestMethod method = (uexXmlHttpRequestMethod)[HTTPMethods[methodStr] integerValue];
+    uexXmlHttpRequest *request = [uexXmlHttpRequest requestWithMethod:method identifier:identifier euexObj:self];
+    if (!request) {
+        return nil;
+    }
+    request.serverPath = url;
+
+    NSTimeInterval timeout = [timeoutNum doubleValue];
+    if (timeout >= 1) {
+        request.timeoutInterval = timeout;
+    }
+    [self.requestDict setObject:request forKey:identifier];
+    return identifier;
+}
 
 - (NSNumber *)open:(NSMutableArray *)inArguments{
 
