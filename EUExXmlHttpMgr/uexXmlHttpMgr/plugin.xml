@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-</uexplugins>
+<uexplugins>
     <plugin name="uexXmlHttpMgr">
         <method name="open"></method>
         <method name="send"></method>
