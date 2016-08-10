@@ -37,8 +37,7 @@
 static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 
 
-#define UEX_FALSE @(NO)
-#define UEX_TRUE @(YES)
+
 
 static inline NSString * newID(){
     return [NSUUID UUID].UUIDString;
@@ -107,7 +106,7 @@ static inline NSString * newID(){
     return identifier;
 }
 
-- (NSNumber *)open:(NSMutableArray *)inArguments{
+- (UEX_BOOL)open:(NSMutableArray *)inArguments{
 
     
     ACArgsUnpack(NSString *identifier,NSString *methodStr,NSString *urlStr,NSNumber *timeoutNum) = inArguments;
@@ -144,7 +143,7 @@ static inline NSString * newID(){
     [request send];
 }
 
-- (NSNumber *)setAppVerify:(NSMutableArray *)inArguments{
+- (UEX_BOOL)setAppVerify:(NSMutableArray *)inArguments{
     ACArgsUnpack(NSString *identifier,NSNumber *appVerityNum) = inArguments;
     BOOL appVerifyEnabled = [appVerityNum boolValue];
     if (!self.requestDict[identifier]) {
@@ -156,7 +155,7 @@ static inline NSString * newID(){
 
 }
 
-- (NSNumber *)setHeaders:(NSMutableArray *)inArguments{
+- (UEX_BOOL)setHeaders:(NSMutableArray *)inArguments{
     ACArgsUnpack(NSString *identifier,NSDictionary *headers) = inArguments;
     if (!headers || !self.requestDict[identifier]) {
         return UEX_FALSE;
@@ -165,7 +164,7 @@ static inline NSString * newID(){
     return UEX_TRUE;
 }
 
-- (NSNumber *)close:(NSMutableArray *)inArguments{
+- (UEX_BOOL)close:(NSMutableArray *)inArguments{
     ACArgsUnpack(NSString *identifier) = inArguments;
     if (!self.requestDict[identifier]) {
         return UEX_FALSE;
@@ -174,7 +173,7 @@ static inline NSString * newID(){
     return UEX_TRUE;
 }
 
-- (NSNumber *)setCertificate:(NSMutableArray *)inArguments{
+- (UEX_BOOL)setCertificate:(NSMutableArray *)inArguments{
 
     ACArgsUnpack(NSString *identifier,NSString* password,NSString *certPath) = inArguments;
     
@@ -199,7 +198,7 @@ static inline NSString * newID(){
     return  UEX_TRUE;
 }
 
-- (NSNumber *)setPostData:(NSMutableArray *)inArguments{
+- (UEX_BOOL)setPostData:(NSMutableArray *)inArguments{
     ACArgsUnpack(NSString *identifier,NSNumber *typeNum,NSString *field) = inArguments;
     uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
     
@@ -231,7 +230,7 @@ static inline NSString * newID(){
 
 }
 
-- (NSNumber *)setInputStream:(NSMutableArray *)inArguments{
+- (UEX_BOOL)setInputStream:(NSMutableArray *)inArguments{
 
     ACArgsUnpack(NSString *identifier,NSString *filePath) = inArguments;
     
@@ -246,7 +245,7 @@ static inline NSString * newID(){
 }
 
 
-- (NSNumber *)setBody:(NSMutableArray *)inArguments{
+- (UEX_BOOL)setBody:(NSMutableArray *)inArguments{
     ACArgsUnpack(NSString *identifier,NSString *body) = inArguments;
     uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
     if (!request) {
@@ -257,7 +256,7 @@ static inline NSString * newID(){
     return  UEX_TRUE;
 }
 
--(void)clearCookie:(NSMutableArray *)inArguments {
+- (void)clearCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
         NSArray * cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         for (int i = 0; i < [cookies count]; i++) {
@@ -276,7 +275,7 @@ static inline NSString * newID(){
     }
 }
 
--(NSString *)getCookie:(NSMutableArray *)inArguments {
+- (NSString *)getCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
         return nil;
     }
