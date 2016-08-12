@@ -199,26 +199,29 @@ static inline NSString * newID(){
 }
 
 - (UEX_BOOL)setPostData:(NSMutableArray *)inArguments{
-    ACArgsUnpack(NSString *identifier,NSNumber *typeNum,NSString *field) = inArguments;
+    ACArgsUnpack(NSString *identifier,NSNumber *typeNum,NSString *field,id data) = inArguments;
     uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
-    
-    if (!request || !typeNum || !field) {
-        return UEX_FALSE;
-    }
-    
+    UEX_PARAM_GUARD_NOT_NIL(request,UEX_FALSE);
+    UEX_PARAM_GUARD_NOT_NIL(typeNum,UEX_FALSE);
+    UEX_PARAM_GUARD_NOT_NIL(field,UEX_FALSE);
+    UEX_PARAM_GUARD_NOT_NIL(data,UEX_FALSE);
+
     NSInteger dataType = [typeNum integerValue];
 
-    id obj = inArguments[3];
+
     switch (dataType) {
         case 0:{
-            if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]] || [obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]]) {
-                [request setPostData:obj forField:field];
+            if ([data isKindOfClass:[NSString class]] ||
+                [data isKindOfClass:[NSNumber class]] ||
+                [data isKindOfClass:[NSDictionary class]] ||
+                [data isKindOfClass:[NSArray class]]) {
+                [request setPostData:data forField:field];
             }
             break;
         }
         case 1:{
-            if ([obj isKindOfClass:[NSString class]]) {
-                [request setFile:[self absPath:obj] forField:field];
+            if ([data isKindOfClass:[NSString class]]) {
+                [request setFile:[self absPath:data] forField:field];
             }
             break;
         }
