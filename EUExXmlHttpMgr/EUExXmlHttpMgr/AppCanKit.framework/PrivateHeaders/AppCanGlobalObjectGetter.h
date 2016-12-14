@@ -1,10 +1,10 @@
 /**
  *
- *	@file   	: uexXmlHttpHelper.h  in EUExXmlHttpMgr
+ *	@file   	: AppCanGlobalObjectGetter.h  in AppCanKit
  *
  *	@author 	: CeriNo 
  * 
- *	@date   	: Created on 16/5/20.
+ *	@date   	: Created on 16/5/31.
  *
  *	@copyright 	: 2016 The AppCan Open Source Project.
  *
@@ -23,19 +23,9 @@
  
 #import <Foundation/Foundation.h>
 
+@protocol AppCanGlobalObjectGetter <NSObject>
 
-
-
-
-
-@class EUExBase;
-@interface uexXmlHttpHelper : NSObject
-
-
-
-+ (NSDictionary<NSString *,NSString *> *)AppCanHTTPHeadersWithEUExObj:(__kindof EUExBase *)euexObj;
-+ (NSString *)MIMETypeForPathExtension:(NSString *)ext;
-
-
+- (id<AppCanWebViewEngineObject>)getAppCanRootWebViewEngine;
+- (id<AppCanWidgetObject>)getAppCanMainWidget;
 
 @end

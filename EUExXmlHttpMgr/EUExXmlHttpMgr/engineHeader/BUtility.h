@@ -1,12 +1,30 @@
-//
-//  BUtility.h
-//  WebKitCorePlam
-//
-//  Created by yang fan on 11-8-23.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
+/*
+ *  Copyright (C) 2014 The AppCan Open Source Project.
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ 
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 //开发版本 控制
-#define F_DEVELOPMENT_USE YES
+//#define F_DEVELOPMENT_USE   NO
+
+#ifdef WIDGETONE_FOR_IDE_DEBUG
+#define F_DEVELOPMENT_USE   YES
+#else
+#define F_DEVELOPMENT_USE   NO
+#endif
+
 //view跳转 控制
 #define F_APPCANREPORT_USE     YES
 //自定义事件 控制
@@ -44,63 +62,34 @@
 
 #define F_UD_StandardWgt          @"standWgt"
 #define F_UD_UpdateWgtID        @"AppCanWgtID"
+#define F_UD_WgtCopyFinish       @"AppCanWgtCopyFinish"
 
 //clientCertificate.p12
 //#define ClientCertficate_PATH [NSString stringWithFormat:@"%@/Documents/widget/wgtRes/clientCertificate.p12", NSHomeDirectory()]
 
+#define iPhone4 ([UIScreen  instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
-//引擎内部Log
+#define iPhone6 ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && MAX([UIScreen mainScreen].bounds.size.height,[UIScreen mainScreen].bounds.size.width) == 667)
+
+#define iPhone6Plus ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && MAX([UIScreen mainScreen].bounds.size.height,[UIScreen mainScreen].bounds.size.width) == 736)
+
+
+
+#define APP_JSON_KEY_MULTIPOPNAME @"multiPopName"
+#define APP_JSON_KEY_MULTIPOPSELECTEDNUM @"multiPopSelectedIndex"
+
+
 #ifndef OUTPUT_LOG
-#define OUTPUT_LOG
+//#define OUTPUT_LOG
 #endif
 
 #ifdef OUTPUT_LOG
-#ifndef ZD_OUTPUT_LOG_LIFE
-#define ZD_OUTPUT_LOG_LIFE
+#ifndef OUTPUT_LOG_CONTROL
+#define OUTPUT_LOG_CONTROL
 #endif
-#ifndef ZD_OUTPUT_LOG_ACTION
-#define ZD_OUTPUT_LOG_ACTION
-#endif
-#ifndef ZD_OUTPUT_LOG_CONSOLE
-#define ZD_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef ZD_OUTPUT_LOG_FILE
-#define ZD_OUTPUT_LOG_FILE
-#endif
-#ifndef YF_OUTPUT_LOG_CONSOLE
-#define YF_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef YF_OUTPUT_LOG_FILE
-#define YF_OUTPUT_LOG_FILE
-#endif
-#ifndef LL_OUTPUT_LOG_CONSOLE
-#define LL_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef LL_OUTPUT_LOG_FILE
-#define LL_OUTPUT_LOG_FILE
-#endif
-#ifndef ZDC_OUTPUT_LOG_CONSOLE
-#define ZDC_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef ZDCC_OUTPUT_LOG_CONSOLE
-#define ZDCC_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef ZDMG_OUTPUT_LOG_CONSOLE
-#define ZDMG_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef ZDC_OUTPUT_LOG_FILE
-#define ZDC_OUTPUT_LOG_FILE
-#endif
-#ifndef ZDTHREAD_OUTPUT_LOG_CONSOLE
-#define ZDTHREAD_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef ZDFLOW_OUTPUT_LOG_CONSOLE
-#define ZDFLOW_OUTPUT_LOG_CONSOLE
-#endif
-#ifndef CHB_OUTPUT_LOG_CONSOLE
-#define CHB_OUTPUT_LOG_CONSOLE
-#endif
+
 //插件log
 #ifndef Plugin_OUTPUT_LOG_CONSOLE
 #define Plugin_OUTPUT_LOG_CONSOLE
@@ -118,31 +107,10 @@ struct rc4_state
 };
 void rc4_setup( struct rc4_state *s, unsigned char *key, int length); 
 void rc4_crypt( struct rc4_state *s, unsigned char *data, int length);
-//Log 
-void ZDACNSLog (NSString *format,...);
-void ZDNSLog (NSString *format, ...);
-void ZDCNSLog (NSString *format, ...);
-void ZDCCNSLog (NSString *format, ...);
-void ZDMGNSLog (NSString *format, ...);
-void ZDThreadNSLog (NSString *format, ...);
-void ZDFlowNSLog (NSString *format, ...);
-void ZDLIFENSLog (NSString *format, ...);
-void YFNSLog (NSString *format, ...);
-void LLNSLog (NSString *format, ...);
-void PluginNSLog (NSString *format, ...);
-void HBNSLog(NSString *format, ...);
+//Log
+void ACENSLog (NSString *format, ...);
 
-void ZDNSLogWithString(NSString *inFormat, NSString *inValue);
-void ZDNSLogWithInt(NSString *inFormat, int inValue);
-void ZDNSLogWithFloat(NSString *inFormat, float inValue);
 
-void YFNSLogWithString(NSString *inFormat, NSString *inValue);
-void YFNSLogWithInt(NSString *inFormat, int inValue);
-void YFNSLogWithFloat(NSString *inFormat, float inValue);
-
-void LLNSLogWithString(NSString *inFormat, NSString *inValue);
-void LLNSLogWithInt(NSString *inFormat, int inValue);
-void LLNSLogWithFloat(NSString *inFormat, float inValue);
 NSString *getAppCanBundlePath(NSString *filename);
 
 typedef union _BGColor {
@@ -157,7 +125,8 @@ typedef union _BGColor {
 
 }
 //base js
-+(NSString*)getBaseJSKey;
+
+//+(NSString*)getBaseJSKey;
 //rc4 js
 +(NSString*)getRC4LocalStoreJSKey;
 //doc path
@@ -174,6 +143,7 @@ typedef union _BGColor {
 //+(BOOL)isPhoneNumber:(NSString*)inPhoneNum;
 +(int)getScreenWidth;
 +(int)getScreenHeight;
++ (CGRect)getApplicationInitFrame;
 +(NSString*)getScreenWAndH;
 +(float)getSystemVersion;
 +(BOOL) isIpad;
@@ -209,8 +179,10 @@ typedef union _BGColor {
 //数据统计
 +(NSString*)appKey;
 +(NSString*)appId;
-+(void)setAppCanViewBackground:(int)wgtType name:(NSString*)inName closeReason:(int)inOpenReason;
-+(void)setAppCanViewActive:(int)wgtType opener:(NSString*)inOpener name:(NSString*)inName openReason:(int)inOpenReason mainWin:(int)inMainWnd;
++(NSString *)getSubWidgetAppKeyByAppid:(NSString*)appid;
++ (void)setAppCanViewActive:(int)wgtType opener:(NSString *)inOpener name:(NSString *)inName openReason:(int)inOpenReason mainWin:(int)inMainWnd appInfo:(NSDictionary *)appInfo;
+
++ (void)setAppCanViewBackground:(int)wgtType name:(NSString *)inName closeReason:(int)inOpenReason appInfo:(NSDictionary *)appInfo;
 //mac
 +(NSString *)macAddress;
 //absPath
@@ -231,6 +203,20 @@ typedef union _BGColor {
 
 +(void)evaluatingJavaScriptInRootWnd:(NSString*)script_;
 +(void)evaluatingJavaScriptInFrontWnd:(NSString*)script_;
-//szc 获取config屏幕方向信息
+// 获取config屏幕方向信息
 +(NSString * )getMainWidgetConfigInterface;
+//
++(NSDictionary *)getMainWidgetConfigWindowBackground;
++(NSString *)getMainWidgetConfigLogserverip;
++ (BOOL)copyMissingFile:(NSString *)sourcePath toPath:(NSString *)toPath;
++ (NSString *)bundleIdentifier;
+
++ (NSString *)getVarifyAppMd5Code:(NSString *)appId AppKey:(NSString *)appKey time:(NSTimeInterval)time_;
+
+
++ (void)rotateToOrientation:(UIInterfaceOrientation)orientation;
+#pragma mark - IDE
+
++ (NSString *)dynamicPluginFrameworkFolderPath;
+
 @end

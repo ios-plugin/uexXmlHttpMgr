@@ -26,17 +26,22 @@
 #import "uexXmlHttpPOSTRequest.h"
 #import "uexXmlHttpHelper.h"
 #import "JSON.h"
-#import "ACEUtils.h"
-#import "EUtility.h"
+
 @interface EUExXmlHttpMgr()
 
-@property (nonatomic,strong)NSMutableDictionary<NSNumber *,__kindof uexXmlHttpRequest *> *requestDict;
+@property (nonatomic,strong)NSMutableDictionary<NSString *,__kindof uexXmlHttpRequest *> *requestDict;
 @end
 
 @implementation EUExXmlHttpMgr
 
 static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 
+
+
+
+static inline NSString * newID(){
+    return [NSUUID UUID].UUIDString;
+}
 
 + (void)initialize{
     static dispatch_once_t onceToken;
@@ -49,16 +54,17 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 }
 
 
-- (instancetype)initWithBrwView:(EBrowserView *)eInBrwView{
-    self = [super initWithBrwView:eInBrwView];
+- (instancetype)initWithWebViewEngine:(id<AppCanWebViewEngineObject>)engine{
+    self = [super initWithWebViewEngine:engine];
     if(self){
         _requestDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
+
 - (void)clean{
-    [self.requestDict enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, __kindof uexXmlHttpRequest * _Nonnull request, BOOL * _Nonnull stop) {
+    [self.requestDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, __kindof uexXmlHttpRequest * _Nonnull request, BOOL * _Nonnull stop) {
         [request close];
     }];
     [self.requestDict removeAllObjects];
@@ -75,156 +81,185 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 
 #pragma mark - UEXAPI
 
-- (void)open:(NSMutableArray *)inArguments{
-    if([inArguments count] < 3){
-        return;
-    }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    NSString *methodStr = getString(inArguments[1]).lowercaseString;
-    NSString *urlStr = getString(inArguments[2]);
-    if (!identifier || [self.requestDict.allKeys containsObject:identifier] || !methodStr || ![HTTPMethods.allKeys containsObject:methodStr] || !urlStr || urlStr.length == 0) {
-        return;
+
+- (NSString *)create:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSDictionary *info) = inArguments;
+    NSString *methodStr = stringArg(info[@"method"]).lowercaseString;
+    NSString *url = stringArg(info[@"url"]);
+    NSNumber *timeoutNum = numberArg(info[@"timeout"]) ?: @(30 * 1000);
+    NSString *identifier = stringArg(info[@"id"]) ?: newID();
+    if (!identifier || [self.requestDict.allKeys containsObject:identifier] || !methodStr || ![HTTPMethods.allKeys containsObject:methodStr] || !url || url.length == 0) {
+        return nil;
     }
     uexXmlHttpRequestMethod method = (uexXmlHttpRequestMethod)[HTTPMethods[methodStr] integerValue];
     uexXmlHttpRequest *request = [uexXmlHttpRequest requestWithMethod:method identifier:identifier euexObj:self];
     if (!request) {
-        return;
+        return nil;
+    }
+    request.serverPath = url;
+
+    NSTimeInterval timeout = [timeoutNum doubleValue];
+    if (timeout >= 1) {
+        request.timeoutInterval = timeout;
+    }
+    [self.requestDict setObject:request forKey:identifier];
+    return identifier;
+}
+
+- (UEX_BOOL)open:(NSMutableArray *)inArguments{
+
+    
+    ACArgsUnpack(NSString *identifier,NSString *methodStr,NSString *urlStr,NSNumber *timeoutNum) = inArguments;
+    methodStr = methodStr.lowercaseString;
+    if (!identifier || [self.requestDict.allKeys containsObject:identifier] || !methodStr || ![HTTPMethods.allKeys containsObject:methodStr] || !urlStr || urlStr.length == 0) {
+        return UEX_FALSE;
+    }
+    uexXmlHttpRequestMethod method = (uexXmlHttpRequestMethod)[HTTPMethods[methodStr] integerValue];
+    uexXmlHttpRequest *request = [uexXmlHttpRequest requestWithMethod:method identifier:identifier euexObj:self];
+    if (!request) {
+        return UEX_FALSE;
     }
     request.serverPath = urlStr;
-    if (inArguments.count > 3) {
-        NSTimeInterval timeout = [inArguments[3] doubleValue];
+    if (timeoutNum) {
+        NSTimeInterval timeout = [timeoutNum doubleValue];
         if (timeout >= 1) {
             request.timeoutInterval = timeout;
         }
     }
     [self.requestDict setObject:request forKey:identifier];
+    return UEX_TRUE;
 }
 
 - (void)send:(NSMutableArray *)inArguments{
-    if([inArguments count] < 1){
-        return;
+    ACArgsUnpack(NSString *identifier,NSNumber *flagNum,ACJSFunctionRef *resultCB,ACJSFunctionRef *progressCB) = inArguments;
+    NSInteger flag = flagNum.integerValue;
+    switch (flag) {
+        default:
+            break;
     }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    [self.requestDict[identifier] send];
+    __kindof uexXmlHttpRequest *request = self.requestDict[identifier];
+    request.resultCB = resultCB;
+    request.progressCB = progressCB;
+    [request send];
 }
 
-- (void)setAppVerify:(NSMutableArray *)inArguments{
-    if([inArguments count] < 2){
-        return;
+- (UEX_BOOL)setAppVerify:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSString *identifier,NSNumber *appVerityNum) = inArguments;
+    BOOL appVerifyEnabled = [appVerityNum boolValue];
+    if (!self.requestDict[identifier]) {
+        return UEX_FALSE;
+
     }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    BOOL appVerifyEnabled = [inArguments[1] boolValue];
     self.requestDict[identifier].appVerifyEnabled = appVerifyEnabled;
+    return UEX_TRUE;
+
 }
 
-- (void)setHeaders:(NSMutableArray *)inArguments{
-    if([inArguments count] < 2){
-        return;
+- (UEX_BOOL)setHeaders:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSString *identifier,NSDictionary *headers) = inArguments;
+    if (!headers || !self.requestDict[identifier]) {
+        return UEX_FALSE;
     }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    id headers = [inArguments[1] JSONValue];
-    if (headers && [headers isKindOfClass:[NSDictionary class]]) {
-        [self.requestDict[identifier] setHeaders:headers];
-    }
+    self.requestDict[identifier].headers = headers;
+    return UEX_TRUE;
 }
 
-- (void)close:(NSMutableArray *)inArguments{
-    if([inArguments count] < 1){
-        return;
+- (UEX_BOOL)close:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSString *identifier) = inArguments;
+    if (!self.requestDict[identifier]) {
+        return UEX_FALSE;
     }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
     [self.requestDict[identifier] close];
+    return UEX_TRUE;
 }
 
-- (void)setCertificate:(NSMutableArray *)inArguments{
-    if ([inArguments count] < 3) {
-        return;
-    }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    NSString *password = getString(inArguments[1]);
-    NSString *certPath = getString(inArguments[2]);
+- (UEX_BOOL)setCertificate:(NSMutableArray *)inArguments{
+
+    ACArgsUnpack(NSString *identifier,NSString* password,NSString *certPath) = inArguments;
+    
     BOOL useAppCanCert = NO;
     if ([certPath.lowercaseString isEqual:@"default"]) {
         useAppCanCert = YES;
     }
     __kindof uexXmlHttpRequest *request = self.requestDict[identifier];
+    if (!request) {
+        return  UEX_FALSE;
+    }
     uexXmlHttpAuthentication *auth = [[uexXmlHttpAuthentication alloc]init];
     if(!useAppCanCert){
         NSData *p12Data = [NSData dataWithContentsOfFile:[self absPath:certPath]];
         if (!p12Data) {
-            return;
+            return UEX_FALSE;
         }
         auth.PKGCS12ClientCertificateData = p12Data;
         auth.clientCertificatePassword = password;
     }
     request.authentication = auth;
+    return  UEX_TRUE;
 }
 
-- (void)setPostData:(NSMutableArray *)inArguments{
-    if([inArguments count] < 4){
-        return;
-    }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    NSInteger dataType = [inArguments[1] integerValue];
-    NSString *field = getString(inArguments[2]);
+- (UEX_BOOL)setPostData:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSString *identifier,NSNumber *typeNum,NSString *field,id data) = inArguments;
     uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
-    if (!request) {
-        return;
-    }
-    id obj = inArguments[3];
+    UEX_PARAM_GUARD_NOT_NIL(request,UEX_FALSE);
+    UEX_PARAM_GUARD_NOT_NIL(typeNum,UEX_FALSE);
+    UEX_PARAM_GUARD_NOT_NIL(field,UEX_FALSE);
+    UEX_PARAM_GUARD_NOT_NIL(data,UEX_FALSE);
+
+    NSInteger dataType = [typeNum integerValue];
+
+
     switch (dataType) {
         case 0:{
-            if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]] || [obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]]) {
-                [request setPostData:obj forField:field];
+            if ([data isKindOfClass:[NSString class]] ||
+                [data isKindOfClass:[NSNumber class]] ||
+                [data isKindOfClass:[NSDictionary class]] ||
+                [data isKindOfClass:[NSArray class]]) {
+                [request setPostData:data forField:field];
             }
             break;
         }
         case 1:{
-            if ([obj isKindOfClass:[NSString class]]) {
-                [request setFile:[self absPath:obj] forField:field];
+            if ([data isKindOfClass:[NSString class]]) {
+                [request setFile:[self absPath:data] forField:field];
             }
             break;
         }
         default:
+            return UEX_FALSE;
             break;
     }
+    return UEX_TRUE;
 
 }
 
-- (void)setInputStream:(NSMutableArray *)inArguments{
-    if([inArguments count] < 2){
-        return;
-    }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    NSString *filePath = getString(inArguments[1]);
+- (UEX_BOOL)setInputStream:(NSMutableArray *)inArguments{
+
+    ACArgsUnpack(NSString *identifier,NSString *filePath) = inArguments;
+    
+
     uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
-    if (!request) {
-        return;
+    if (!request || !filePath) {
+        return UEX_FALSE;
     }
     NSData *fileData = [NSData dataWithContentsOfFile:[self absPath:filePath]];
     [request setPostBody:fileData];
+    return UEX_TRUE;
 }
-- (void)setBody:(NSMutableArray *)inArguments{
-    if([inArguments count] < 2){
-        return;
-    }
-    NSNumber *identifier = getIdentifier(inArguments[0]);
-    NSString *body = getString(inArguments[1]);
+
+
+- (UEX_BOOL)setBody:(NSMutableArray *)inArguments{
+    ACArgsUnpack(NSString *identifier,NSString *body) = inArguments;
     uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
     if (!request) {
-        return;
+        return UEX_FALSE;
     }
     NSData *data = [body dataUsingEncoding:NSUTF8StringEncoding];
     [request setPostBody:data];
-}
-- (void)setDebugMode:(NSMutableArray *)inArguments{
-    if([inArguments count] < 1){
-        return;
-    }
-    [uexXmlHttpHelper setDebugMode:[inArguments[0] boolValue]];
+    return  UEX_TRUE;
 }
 
--(void)clearCookie:(NSMutableArray *)inArguments {
+- (void)clearCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
         NSArray * cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
         for (int i = 0; i < [cookies count]; i++) {
@@ -243,9 +278,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     }
 }
 
--(void)getCookie:(NSMutableArray *)inArguments {
+- (NSString *)getCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
-        return;
+        return nil;
     }
     NSString *httpStr = [inArguments objectAtIndex:0];
     NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -266,15 +301,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
         }
     }
     NSDictionary * cookieDict = [NSDictionary dictionaryWithObject:cookieAll forKey:@"cookie"];
-    if (ACE_Available()) {
-        [EUtility browserView:self.meBrwView
-  callbackWithFunctionKeyPath:@"uexXmlHttpMgr.cbGetCookie"
-                    arguments:ACE_ArgsPack([cookieDict JSONFragment])
-                   completion:nil];
-    }else{
-        NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.cbGetCookie){uexXmlHttpMgr.cbGetCookie(%@);}",[cookieDict JSONFragment].JSONFragment];
-        [EUtility brwView:self.meBrwView evaluateScript:jsStr];
-    }
+    [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.cbGetCookie" arguments:ACArgsPack([cookieDict ac_JSONFragment])];
+    return cookieAll;
+
 }
 
 #pragma mark - uexXmlHttpRequestDelegate
@@ -286,7 +315,7 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     if ([request.responseObject isKindOfClass:[NSData class]]) {
         responseStr = [[NSString alloc]initWithData:request.responseObject encoding:NSUTF8StringEncoding];
     }
-    NSNumber *identifier = request.identifier;
+    NSString *identifier = request.identifier;
     
 
     NSString *result = [self responseStringFromObject:request.responseObject];
@@ -297,28 +326,21 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     [responseDict setValue:[NSHTTPURLResponse localizedStringForStatusCode:statusCode] forKey:@"responseStatusMessage"];
     [responseDict setValue:error.localizedDescription forKey:@"responseError"];
     
-    UEXLog(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
-    
-    if (ACE_Available()) {
-        [EUtility browserView:self.meBrwView
-  callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onData"
-                    arguments:ACE_ArgsPack(identifier,@(request.status),result,@(statusCode),[responseDict JSONFragment])
-                   completion:nil];
-    }else{
-        NSString *resultJSON = result ? [result JSONFragment] : @"(null)";
-        NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.onData){uexXmlHttpMgr.onData(%@,%@,%@,%@,%@);}",identifier,@(request.status),resultJSON,@(statusCode),[responseDict JSONFragment].JSONFragment];
-        NSLog(@"%@",jsStr);
-        [EUtility brwView:self.meBrwView evaluateScript:jsStr];
-    }
+    ACLogDebug(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
+    [request.resultCB executeWithArguments:ACArgsPack(@(request.status),result,@(statusCode),responseDict)];
+    [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onData" arguments:ACArgsPack(numberArg(identifier),@(request.status),result,@(statusCode),[responseDict JSONFragment])];
+    request.resultCB = nil;
+    request.progressCB = nil;
+
     
     
     
 }
 - (void)request:(__kindof uexXmlHttpRequest *)request sessionInvalidatedWithError:(NSError *)error{
     if (error) {
-        UEXLog(@"->uexXmlHttpMgr request %@ invalidate session FAILED!error:%@",request.identifier,error.localizedDescription);
+        ACLogDebug(@"->uexXmlHttpMgr request %@ invalidate session FAILED!error:%@",request.identifier,error.localizedDescription);
     }else{
-        UEXLog(@"->uexXmlHttpMgr request %@ invalidate session SUCCESS!",request.identifier);
+        ACLogDebug(@"->uexXmlHttpMgr request %@ invalidate session SUCCESS!",request.identifier);
     }
     [self.requestDict removeObjectForKey:request.identifier];
     
@@ -328,17 +350,11 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
         return;
     }
     uexXmlHttpPOSTRequest *postRequest = (uexXmlHttpPOSTRequest *)request;
-    UEXLog(@"->uexXmlHttpMgr request %@ update progress:%@%%",postRequest.identifier,@(postRequest.percent));
+    ACLogDebug(@"->uexXmlHttpMgr request %@ update progress:%@%%",postRequest.identifier,@(postRequest.percent));
+    [request.progressCB executeWithArguments:ACArgsPack(@(postRequest.percent))];
+    [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onPostProgress" arguments:ACArgsPack(numberArg(postRequest.identifier),@(postRequest.percent))];
     
-    if (ACE_Available()) {
-        [EUtility browserView:self.meBrwView
-  callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onPostProgress"
-                    arguments:ACE_ArgsPack(postRequest.identifier,@(postRequest.percent))
-                   completion:nil];
-    }else{
-        NSString *jsStr = [NSString stringWithFormat:@"if(uexXmlHttpMgr.onPostProgress){uexXmlHttpMgr.onPostProgress(%@,%@);}",postRequest.identifier,@(postRequest.percent)];
-        [EUtility brwView:self.meBrwView evaluateScript:jsStr];
-    }
+
 }
 
 #pragma mark - Tool
@@ -357,29 +373,9 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
     return responseStr;
 }
 
-static NSString * getString(id obj){
-    NSString *str = nil;
-    if ([obj isKindOfClass:[NSString class]]) {
-        str = obj;
-    }
-    if ([obj isKindOfClass:[NSNumber class]]) {
-        str = [obj stringValue];
-    }
-    return str;
-}
-static NSNumber * getIdentifier(id obj){
-    NSNumber *num = nil;
-    if ([obj isKindOfClass:[NSString class]] && [obj length] > 0) {
-        num = [NSDecimalNumber decimalNumberWithString:obj];
-    }
-    if ([obj isKindOfClass:[NSNumber class]]) {
-        num = obj;
-    }
-    return num;
-}
 
 
-- (uexXmlHttpPOSTRequest *)getPostRequestByIdentifier:(NSNumber *)identifier{
+- (uexXmlHttpPOSTRequest *)getPostRequestByIdentifier:(NSString *)identifier{
     __kindof uexXmlHttpRequest *request = self.requestDict[identifier];
     if ([request isKindOfClass:[uexXmlHttpPOSTRequest class]]) {
         return request;

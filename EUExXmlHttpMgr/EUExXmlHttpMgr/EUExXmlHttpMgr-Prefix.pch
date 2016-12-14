@@ -7,7 +7,6 @@
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "EUtility.h"
-#define UEX_LOCALIZEDSTRING(...) [EUtility uexPlugin:@"uexXmlHttpMgr" localizedString:__VA_ARGS__,nil]
+#define UEX_LOCALIZEDSTRING(...) [NSString ac_plugin:@"uexXmlHttpMgr" localizedString:__VA_ARGS__,nil]
 
 #endif

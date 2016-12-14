@@ -23,7 +23,7 @@
 
 #import "uexXmlHttpPOSTRequest.h"
 #import "EUExXmlHttpMgr.h"
-#import "ACEUtils.h"
+
 #import "uexXmlHttpFormFile.h"
 #import "uexXmlHttpHelper.h"
 typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){

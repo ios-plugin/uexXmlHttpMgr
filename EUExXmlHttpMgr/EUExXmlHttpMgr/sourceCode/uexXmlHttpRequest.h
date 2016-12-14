@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import "uexXmlHttpAuthentication.h"
-
+#import <AppCanKit/AppCanKit.h>
 
 
 
@@ -54,19 +54,24 @@ typedef NS_ENUM(NSInteger,uexXmlHttpRequestStatus){
 
 @property (nonatomic,assign)NSTimeInterval timeoutInterval;
 @property (nonatomic,strong)uexXmlHttpAuthentication *authentication;
-@property (nonatomic,strong)NSNumber *identifier;
+@property (nonatomic,strong)NSString *identifier;
 @property (nonatomic,strong)NSString *serverPath;
 @property (nonatomic,strong)NSDictionary *headers;
 @property (nonatomic,assign)BOOL appVerifyEnabled;
 
 @property (nonatomic,strong)NSHTTPURLResponse *response;
 @property (nonatomic,strong)id responseObject;
+@property (nonatomic,strong)ACJSFunctionRef *resultCB;
+@property (nonatomic,strong)ACJSFunctionRef *progressCB;
 
 
 
 
-+ (instancetype)requestWithMethod:(uexXmlHttpRequestMethod)method identifier:(NSNumber *)identifier euexObj:(EUExXmlHttpMgr *)euexObj;
++ (instancetype)requestWithMethod:(uexXmlHttpRequestMethod)method identifier:(NSString *)identifier euexObj:(EUExXmlHttpMgr *)euexObj;
 - (void)close;
+
+
+
 
 #pragma mark - subclass MUST override the methods below!
 - (uexXmlHttpRequestMethod)method;

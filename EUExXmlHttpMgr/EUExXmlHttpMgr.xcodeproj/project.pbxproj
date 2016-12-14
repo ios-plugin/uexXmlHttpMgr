@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		034BF54018B2EAED0074D5B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034BF53F18B2EAED0074D5B7 /* Foundation.framework */; };
 		3C1C09D01BE062FE00571E72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1C09D21BE062FE00571E72 /* Localizable.strings */; };
+		4229D9A51D06B279003F7E51 /* AppCanKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4229D9A41D06B279003F7E51 /* AppCanKit.framework */; };
 		42C67DD51CF2CF5400D2DF23 /* uexXmlHttpFormFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C67DD41CF2CF5400D2DF23 /* uexXmlHttpFormFile.m */; };
 		42C67DD61CF2ED2E00D2DF23 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */; };
 		42F7EF4E1CEEC748009F14AF /* EUExXmlHttpMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF4D1CEEC748009F14AF /* EUExXmlHttpMgr.m */; };
@@ -50,18 +51,11 @@
 		3C1AD5881BD5F39A0091D2A1 /* uexXmlHttpMgr.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uexXmlHttpMgr.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1C09D11BE062FE00571E72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C1C09D31BE062FF00571E72 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		4282502C1CEEF6A00025E5C2 /* EUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUtility.h; sourceTree = "<group>"; };
+		421D353B1D123D6C002C5817 /* BUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUtility.h; sourceTree = "<group>"; };
+		421D353C1D123D77002C5817 /* WidgetOneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetOneDelegate.h; sourceTree = "<group>"; };
+		4229D9A41D06B279003F7E51 /* AppCanKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppCanKit.framework; sourceTree = "<group>"; };
 		42C67DD31CF2CF5400D2DF23 /* uexXmlHttpFormFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpFormFile.h; sourceTree = "<group>"; };
 		42C67DD41CF2CF5400D2DF23 /* uexXmlHttpFormFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uexXmlHttpFormFile.m; sourceTree = "<group>"; };
-		42F7EF0E1CEEC719009F14AF /* ACEBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEBaseViewController.h; sourceTree = "<group>"; };
-		42F7EF0F1CEEC719009F14AF /* BUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUtility.h; sourceTree = "<group>"; };
-		42F7EF101CEEC719009F14AF /* EBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserController.h; sourceTree = "<group>"; };
-		42F7EF111CEEC719009F14AF /* EBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EBrowserView.h; sourceTree = "<group>"; };
-		42F7EF121CEEC719009F14AF /* EUExBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUExBase.h; sourceTree = "<group>"; };
-		42F7EF131CEEC719009F14AF /* EUExBaseDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUExBaseDefine.h; sourceTree = "<group>"; };
-		42F7EF151CEEC719009F14AF /* WidgetOneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetOneDelegate.h; sourceTree = "<group>"; };
-		42F7EF161CEEC719009F14AF /* WWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidget.h; sourceTree = "<group>"; };
-		42F7EF171CEEC719009F14AF /* WWidgetMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWidgetMgr.h; sourceTree = "<group>"; };
 		42F7EF331CEEC719009F14AF /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		42F7EF341CEEC719009F14AF /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
 		42F7EF351CEEC719009F14AF /* MD5Digest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Digest.h; sourceTree = "<group>"; };
@@ -71,11 +65,6 @@
 		42F7EF391CEEC719009F14AF /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		42F7EF3A1CEEC719009F14AF /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		42F7EF3B1CEEC719009F14AF /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		42F7EF471CEEC727009F14AF /* ACEArgsPacking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEArgsPacking.h; sourceTree = "<group>"; };
-		42F7EF481CEEC727009F14AF /* ACEAvailable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEAvailable.h; sourceTree = "<group>"; };
-		42F7EF491CEEC727009F14AF /* ACEEXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEEXTScope.h; sourceTree = "<group>"; };
-		42F7EF4A1CEEC727009F14AF /* ACEMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEMetamacros.h; sourceTree = "<group>"; };
-		42F7EF4B1CEEC727009F14AF /* ACEUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACEUtils.h; sourceTree = "<group>"; };
 		42F7EF4C1CEEC748009F14AF /* EUExXmlHttpMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EUExXmlHttpMgr.h; sourceTree = "<group>"; };
 		42F7EF4D1CEEC748009F14AF /* EUExXmlHttpMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EUExXmlHttpMgr.m; sourceTree = "<group>"; };
 		42F7EF4F1CEEC77C009F14AF /* uexXmlHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpRequest.h; sourceTree = "<group>"; };
@@ -97,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				034BF54018B2EAED0074D5B7 /* Foundation.framework in Frameworks */,
+				4229D9A51D06B279003F7E51 /* AppCanKit.framework in Frameworks */,
 				42F7EF7E1CEEE9F9009F14AF /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,7 +131,7 @@
 		034BF54118B2EAED0074D5B7 /* EUExXmlHttpMgr */ = {
 			isa = PBXGroup;
 			children = (
-				42F7EF461CEEC727009F14AF /* ACEUtils */,
+				4229D9A41D06B279003F7E51 /* AppCanKit.framework */,
 				42F7EF0D1CEEC719009F14AF /* engineHeader */,
 				42F7EF181CEEC719009F14AF /* sourceCode */,
 				034BF54218B2EAED0074D5B7 /* Supporting Files */,
@@ -170,16 +160,8 @@
 		42F7EF0D1CEEC719009F14AF /* engineHeader */ = {
 			isa = PBXGroup;
 			children = (
-				4282502C1CEEF6A00025E5C2 /* EUtility.h */,
-				42F7EF0E1CEEC719009F14AF /* ACEBaseViewController.h */,
-				42F7EF0F1CEEC719009F14AF /* BUtility.h */,
-				42F7EF101CEEC719009F14AF /* EBrowserController.h */,
-				42F7EF111CEEC719009F14AF /* EBrowserView.h */,
-				42F7EF121CEEC719009F14AF /* EUExBase.h */,
-				42F7EF131CEEC719009F14AF /* EUExBaseDefine.h */,
-				42F7EF151CEEC719009F14AF /* WidgetOneDelegate.h */,
-				42F7EF161CEEC719009F14AF /* WWidget.h */,
-				42F7EF171CEEC719009F14AF /* WWidgetMgr.h */,
+				421D353C1D123D77002C5817 /* WidgetOneDelegate.h */,
+				421D353B1D123D6C002C5817 /* BUtility.h */,
 			);
 			path = engineHeader;
 			sourceTree = "<group>";
@@ -219,18 +201,6 @@
 				42F7EF3B1CEEC719009F14AF /* SBJsonWriter.h */,
 			);
 			path = JSON;
-			sourceTree = "<group>";
-		};
-		42F7EF461CEEC727009F14AF /* ACEUtils */ = {
-			isa = PBXGroup;
-			children = (
-				42F7EF471CEEC727009F14AF /* ACEArgsPacking.h */,
-				42F7EF481CEEC727009F14AF /* ACEAvailable.h */,
-				42F7EF491CEEC727009F14AF /* ACEEXTScope.h */,
-				42F7EF4A1CEEC727009F14AF /* ACEMetamacros.h */,
-				42F7EF4B1CEEC727009F14AF /* ACEUtils.h */,
-			);
-			path = ACEUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,6 +412,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EUExXmlHttpMgr/sourceCode",
+					"$(PROJECT_DIR)/EUExXmlHttpMgr",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EUExXmlHttpMgr/EUExXmlHttpMgr-Prefix.pch";
@@ -461,6 +432,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EUExXmlHttpMgr/sourceCode",
+					"$(PROJECT_DIR)/EUExXmlHttpMgr",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EUExXmlHttpMgr/EUExXmlHttpMgr-Prefix.pch";
