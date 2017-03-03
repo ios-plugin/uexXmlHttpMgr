@@ -86,7 +86,7 @@
             @strongify(self);
             return [self.authentication authChallengeDispositionWithSession:session challenge:challenge credential:credential];
         }];
-    }else{
+    }else if(!self.certificateValidationEnabled){
         self.manager.securityPolicy.validatesDomainName = NO;
         self.manager.securityPolicy.allowInvalidCertificates = YES;
     }

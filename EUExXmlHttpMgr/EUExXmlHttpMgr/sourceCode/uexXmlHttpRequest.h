@@ -63,6 +63,7 @@ typedef NS_ENUM(NSInteger,uexXmlHttpRequestStatus){
 @property (nonatomic,strong)id responseObject;
 @property (nonatomic,strong)ACJSFunctionRef *resultCB;
 @property (nonatomic,strong)ACJSFunctionRef *progressCB;
+@property (nonatomic,assign)BOOL certificateValidationEnabled;
 
 
 

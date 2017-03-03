@@ -88,6 +88,7 @@ static inline NSString * newID(){
     NSString *url = stringArg(info[@"url"]);
     NSNumber *timeoutNum = numberArg(info[@"timeout"]) ?: @(30 * 1000);
     NSString *identifier = stringArg(info[@"id"]) ?: newID();
+    NSNumber *certificateValidation = numberArg(info[@"certificateValidation"]);
     if (!identifier || [self.requestDict.allKeys containsObject:identifier] || !methodStr || ![HTTPMethods.allKeys containsObject:methodStr] || !url || url.length == 0) {
         return nil;
     }
@@ -97,6 +98,9 @@ static inline NSString * newID(){
         return nil;
     }
     request.serverPath = url;
+    if (certificateValidation) {
+        request.certificateValidationEnabled = certificateValidation.boolValue;
+    }
 
     NSTimeInterval timeout = [timeoutNum doubleValue];
     if (timeout >= 1) {
