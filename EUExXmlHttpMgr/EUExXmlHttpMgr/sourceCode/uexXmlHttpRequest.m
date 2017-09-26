@@ -53,8 +53,17 @@
     if (self) {
         _euexObj = euexObj;
         _timeoutInterval = 30;
-        AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        [mgr setRequestSerializer:[AFHTTPRequestSerializer serializer]];
+        
+        //在NSURLSessionConfiguration中设置不缓存
+        NSURLSessionConfiguration *requestConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        requestConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        
+        //在AFHTTPRequestSerializer中设置不缓存
+        AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
+        requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        
+        AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc]initWithSessionConfiguration:requestConfiguration];
+        [mgr setRequestSerializer:requestSerializer];
         [mgr setResponseSerializer:[AFHTTPResponseSerializer serializer]];
         @weakify(self);
         [mgr setSessionDidBecomeInvalidBlock:^(NSURLSession * _Nonnull session, NSError * _Nonnull error) {
