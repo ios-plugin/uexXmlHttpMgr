@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="4.0.1" build="1">
-        <info>1:支持开启证书校验</info>
+    <plugin uexName="uexXmlHttpMgr" version="4.0.2" build="2">
+        <info>2:取消网络请求本地缓存</info>
+        <build>1:支持开启证书校验</build>
         <build>0:跨域异步请求功能插件</build>
 	</plugin>
 </uexplugins>
