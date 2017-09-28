@@ -27,6 +27,8 @@
 #import "uexXmlHttpHelper.h"
 #import "JSON.h"
 
+//#define FILEPATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
 @interface EUExXmlHttpMgr()
 
 @property (nonatomic,strong)NSMutableDictionary<NSString *,__kindof uexXmlHttpRequest *> *requestDict;
@@ -78,6 +80,20 @@ static inline NSString * newID(){
 //    //[request setHeaders:@{@"myKey":@"myValue"}];
 //    [request send];
 //}
+
+#pragma mark - AppDelegate
++ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    
+//    NSFileManager * fileManager = [NSFileManager defaultManager];
+//    NSArray * tempFileList = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:FILEPATH error:nil]]
+//                              ;
+//    NSLog(@"arr = %@",tempFileList);
+    
+    //清除缓存
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    return YES;
+}
 
 #pragma mark - UEXAPI
 
