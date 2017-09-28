@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-  <plugin uexName="uexXmlHttpMgr" version="3.0.18" build="18">
-    <info>18: IDE证书更新</info>
+  <plugin uexName="uexXmlHttpMgr" version="3.0.19" build="19">
+    <info>19: 取消网络请求本地缓存</info>
+    <build>18: IDE证书更新</build>
     <build>17: setPostData支持Number类型的value;除assets-library下的路径的文件,插件不再对图片做额外处理</build>
     <build>16: 用AFNetWorking重构</build>
     <build>15: 添加IDE支持</build>

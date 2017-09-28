@@ -73,6 +73,20 @@ static NSDictionary<NSString *,NSNumber *> *HTTPMethods = nil;
 //    [request send];
 //}
 
+#pragma mark - AppDelegate
++ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    
+    //    NSFileManager * fileManager = [NSFileManager defaultManager];
+    //    NSArray * tempFileList = [[NSArray alloc] initWithArray:[fileManager contentsOfDirectoryAtPath:FILEPATH error:nil]]
+    //                              ;
+    //    NSLog(@"arr = %@",tempFileList);
+    
+    //清除缓存
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    return YES;
+}
+
 #pragma mark - UEXAPI
 
 - (void)open:(NSMutableArray *)inArguments{
