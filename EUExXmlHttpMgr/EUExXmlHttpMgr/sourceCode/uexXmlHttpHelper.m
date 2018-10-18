@@ -25,6 +25,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <CommonCrypto/CommonCrypto.h>
 #import <AppCanKit/AppCanKit.h>
+#import <objc/runtime.h>
 
 
 
@@ -56,8 +57,10 @@
     NSString *appId = @"";
     NSString *appKey = @"";
     
-    NSString *pluginStr = @"widget/plugin";
-    if ([widget.indexUrl rangeOfString:pluginStr].length == [pluginStr length]) {
+    NSDictionary *widgetDic = [uexXmlHttpHelper getAllPropertiesAndVaules:widget];
+    NSLog(@"uexXmlHttpHelper ---> widget ------->dic:%@",widgetDic);
+    NSString *wgtType = [NSString stringWithFormat:@"%@",[widgetDic objectForKey:@"wgtType"]];
+    if ([wgtType isEqualToString:@"4"]) {
         id<AppCanWidgetObject> mainWgt = AppCanMainWidget();
         appId = mainWgt.appId;
         appKey = mainWgt.widgetOneId;
@@ -71,7 +74,8 @@
         }
         appId = widget.appId;
     }
-    
+    NSLog(@"widget.indexUrl---%@",widget.indexUrl);
+
     NSString *verifyStr = [self MD5:[NSString stringWithFormat:@"%@:%@:%@",appId,appKey,time]];
     verifyStr = [NSString stringWithFormat:@"md5=%@;ts=%@;",verifyStr,time];
     [dict setValue:appId forKey:@"x-mas-app-id"];
@@ -96,4 +100,26 @@
     NSString * timestamp = [NSString stringWithFormat:@"%lld",time];
     return timestamp;
 }
+
+/* 获取对象的所有属性和属性内容 */
++ (NSDictionary *)getAllPropertiesAndVaules:(NSObject *)obj
+{
+    NSMutableDictionary *propsDic = [NSMutableDictionary dictionary];
+    unsigned int outCount;
+    objc_property_t *properties =class_copyPropertyList([obj class], &outCount);
+    for ( int i = 0; i<outCount; i++)
+    {
+        objc_property_t property = properties[i];
+        const char* char_f =property_getName(property);
+        NSString *propertyName = [NSString stringWithUTF8String:char_f];
+        id propertyValue = [obj valueForKey:(NSString *)propertyName];
+        if (propertyValue) {
+            [propsDic setObject:propertyValue forKey:propertyName];
+        }
+    }
+    free(properties);
+    return propsDic;
+}
+
+
 @end

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="4.0.2" build="2">
-        <info>2:取消网络请求本地缓存</info>
+    <plugin uexName="uexXmlHttpMgr" version="4.0.5" build="2018101803">
+        <info>5:x-mas-app-id 根据wgtType判断</info>
+        <build>4:x-mas-app-id 错误的问题修改2</build>
+        <build>3:x-mas-app-id 错误的问题修改1</build>
+        <build>2:取消网络请求本地缓存</build>
         <build>1:支持开启证书校验</build>
         <build>0:跨域异步请求功能插件</build>
 	</plugin>
