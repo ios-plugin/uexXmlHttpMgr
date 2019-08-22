@@ -321,7 +321,7 @@ static inline NSString * newID(){
         }
     }
     NSDictionary * cookieDict = [NSDictionary dictionaryWithObject:cookieAll forKey:@"cookie"];
-    [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.cbGetCookie" arguments:ACArgsPack([cookieDict ac_JSONFragment])];
+    [self callbackWithFunctionKeyPathByMainThread:@"uexXmlHttpMgr.cbGetCookie" arguments:ACArgsPack([cookieDict ac_JSONFragment])];
     return cookieAll;
 
 }
@@ -348,7 +348,7 @@ static inline NSString * newID(){
     
     ACLogDebug(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
     [request.resultCB executeWithArguments:ACArgsPack(@(request.status),result,@(statusCode),responseDict)];
-    [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onData" arguments:ACArgsPack(numberArg(identifier),@(request.status),result,@(statusCode),[responseDict JSONFragment])];
+    [self callbackWithFunctionKeyPathByMainThread:@"uexXmlHttpMgr.onData" arguments:ACArgsPack(numberArg(identifier),@(request.status),result,@(statusCode),[responseDict JSONFragment])];
     request.resultCB = nil;
     request.progressCB = nil;
 
@@ -372,7 +372,7 @@ static inline NSString * newID(){
     uexXmlHttpPOSTRequest *postRequest = (uexXmlHttpPOSTRequest *)request;
     ACLogDebug(@"->uexXmlHttpMgr request %@ update progress:%@%%",postRequest.identifier,@(postRequest.percent));
     [request.progressCB executeWithArguments:ACArgsPack(@(postRequest.percent))];
-    [self.webViewEngine callbackWithFunctionKeyPath:@"uexXmlHttpMgr.onPostProgress" arguments:ACArgsPack(numberArg(postRequest.identifier),@(postRequest.percent))];
+    [self callbackWithFunctionKeyPathByMainThread:@"uexXmlHttpMgr.onPostProgress" arguments:ACArgsPack(numberArg(postRequest.identifier),@(postRequest.percent))];
     
 
 }
@@ -401,6 +401,21 @@ static inline NSString * newID(){
         return request;
     }
     return nil;
+}
+
+/**
+ 保证在主线程中完成JS回调操作
+ 
+ @param jsString 回调需要执行的JS字符串
+ */
+- (void)callbackWithFunctionKeyPathByMainThread:(NSString *)JSKeyPath arguments:(nullable NSArray *)arguments {
+    if([NSThread isMainThread]){
+        [self.webViewEngine callbackWithFunctionKeyPath:JSKeyPath arguments:arguments];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.webViewEngine callbackWithFunctionKeyPath:JSKeyPath arguments:arguments];
+        });
+    }
 }
 
 @end
