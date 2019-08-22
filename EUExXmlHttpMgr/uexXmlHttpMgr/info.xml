@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="4.0.5" build="2018101803">
-        <info>5:x-mas-app-id 根据wgtType判断</info>
+    <plugin uexName="uexXmlHttpMgr" version="4.3.6" build="2019082201">
+        <info>6:初步适配iOS13的兼容性问题</info>
+        <build>5:x-mas-app-id 根据wgtType判断</build>
         <build>4:x-mas-app-id 错误的问题修改2</build>
         <build>3:x-mas-app-id 错误的问题修改1</build>
         <build>2:取消网络请求本地缓存</build>
