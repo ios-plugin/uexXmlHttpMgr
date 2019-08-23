@@ -347,7 +347,7 @@ static inline NSString * newID(){
     [responseDict setValue:error.localizedDescription forKey:@"responseError"];
     
     ACLogDebug(@"->uexXmlHttpMgr request %@ complete! \n response:%@ \n responseObject:%@ \n error:%@",identifier,responseDict,result,error.localizedDescription);
-    [request.resultCB executeWithArguments:ACArgsPack(@(request.status),result,@(statusCode),responseDict)];
+    [self jsCallbackExecuteByMainThread:request.resultCB withArguments:ACArgsPack(@(request.status),result,@(statusCode),responseDict)];
     [self callbackWithFunctionKeyPathByMainThread:@"uexXmlHttpMgr.onData" arguments:ACArgsPack(numberArg(identifier),@(request.status),result,@(statusCode),[responseDict JSONFragment])];
     request.resultCB = nil;
     request.progressCB = nil;
@@ -371,10 +371,8 @@ static inline NSString * newID(){
     }
     uexXmlHttpPOSTRequest *postRequest = (uexXmlHttpPOSTRequest *)request;
     ACLogDebug(@"->uexXmlHttpMgr request %@ update progress:%@%%",postRequest.identifier,@(postRequest.percent));
-    [request.progressCB executeWithArguments:ACArgsPack(@(postRequest.percent))];
+    [self jsCallbackExecuteByMainThread:request.progressCB withArguments:ACArgsPack(@(postRequest.percent))];
     [self callbackWithFunctionKeyPathByMainThread:@"uexXmlHttpMgr.onPostProgress" arguments:ACArgsPack(numberArg(postRequest.identifier),@(postRequest.percent))];
-    
-
 }
 
 #pragma mark - Tool
@@ -401,6 +399,22 @@ static inline NSString * newID(){
         return request;
     }
     return nil;
+}
+
+/**
+ 保证在主线程中完成JS回调操作
+ 
+ @param jsFunc 回调JS方法
+ @param args 参数
+ */
+- (void)jsCallbackExecuteByMainThread:(ACJSFunctionRef *)jsFunc withArguments:(NSArray *)args {
+    if([NSThread isMainThread]){
+        [jsFunc executeWithArguments:args];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [jsFunc executeWithArguments:args];
+        });
+    }
 }
 
 /**
