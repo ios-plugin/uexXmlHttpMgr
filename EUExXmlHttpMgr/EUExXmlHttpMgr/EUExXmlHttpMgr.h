@@ -26,4 +26,7 @@
 #import <AppCanKit/AppCanKit.h>
 @interface EUExXmlHttpMgr : EUExBase<uexXmlHttpRequestDelegate>
 
+- (void)jsCallbackExecuteByMainThread:(ACJSFunctionRef *)jsFunc withArguments:(NSArray *)args;
+- (void)callbackWithFunctionKeyPathByMainThread:(NSString *)JSKeyPath arguments:(nullable NSArray *)arguments;
+
 @end
