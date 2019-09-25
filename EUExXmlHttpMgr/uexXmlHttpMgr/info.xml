@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="4.3.6.1" build="2019082301">
-        <info>6.1:初步适配iOS13的兼容性问题</info>
+    <plugin uexName="uexXmlHttpMgr" version="4.3.7" build="2019091901">
+        <info>7:增加setCookie接口</info>
+        <build>6.1:初步适配iOS13的兼容性问题</build>
         <build>5:x-mas-app-id 根据wgtType判断</build>
         <build>4:x-mas-app-id 错误的问题修改2</build>
         <build>3:x-mas-app-id 错误的问题修改1</build>

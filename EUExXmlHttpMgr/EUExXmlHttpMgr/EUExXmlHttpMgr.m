@@ -298,6 +298,34 @@ static inline NSString * newID(){
     }
 }
 
+- (void)setCookie:(NSMutableArray *)inArguments {
+    if ([inArguments count] < 2) {
+        return;
+    }
+    ACArgsUnpack(NSString *cookieUrl, NSString *cookieDataAll) = inArguments;
+    // 获取cookieStorage
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookieDataList = [cookieDataAll componentsSeparatedByString:@";"];
+    for (NSString *cookieDataStr in cookieDataList) {
+        NSArray *cookieDataArr = [cookieDataStr componentsSeparatedByString:@"="];
+        if ([cookieDataArr count] == 2) {
+            // 按照格式分割cookie
+            NSString *cookieName = [cookieDataArr objectAtIndex:0];
+            NSString *cookieValue = [cookieDataArr objectAtIndex:1];
+            // 创建一个可变字典存放cookie
+            NSMutableDictionary *cookieDict = [NSMutableDictionary dictionary];
+            [cookieDict setObject:cookieName forKey:NSHTTPCookieName];
+            [cookieDict setObject:cookieValue forKey:NSHTTPCookieValue];
+            [cookieDict setObject:cookieUrl forKey:NSHTTPCookieOriginURL];
+            [cookieDict setObject:@"/" forKey:NSHTTPCookiePath];
+            // 将可变字典转化为cookie
+            NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDict];
+            // 存储cookie
+            [cookieStorage setCookie:cookie];
+        }
+    }
+}
+
 - (NSString *)getCookie:(NSMutableArray *)inArguments {
     if ([inArguments count] < 1) {
         return nil;
