@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <uexplugins>
-    <plugin uexName="uexXmlHttpMgr" version="4.5.8" build="2020061201">
-        <info>8:适配4.5引擎，移除AFNetworking.framework</info>
+    <plugin uexName="uexXmlHttpMgr" version="4.5.8.1" build="2020061901">
+        <info>8:适配4.5引擎中的4.0版AF，移除插件自带AFNetworking.framework</info>
         <build>7:增加setCookie接口</build>
         <build>6.1:初步适配iOS13的兼容性问题</build>
         <build>5:x-mas-app-id 根据wgtType判断</build>
