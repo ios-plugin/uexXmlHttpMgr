@@ -17,7 +17,6 @@
 		42F7EF6A1CEEDCA8009F14AF /* uexXmlHttpAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF691CEEDCA8009F14AF /* uexXmlHttpAuthentication.m */; };
 		42F7EF6D1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6C1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m */; };
 		42F7EF701CEEE4D3009F14AF /* uexXmlHttpGETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6F1CEEE4D3009F14AF /* uexXmlHttpGETRequest.m */; };
-		42F7EF7E1CEEE9F9009F14AF /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +72,6 @@
 			files = (
 				034BF54018B2EAED0074D5B7 /* Foundation.framework in Frameworks */,
 				4229D9A51D06B279003F7E51 /* AppCanKit.framework in Frameworks */,
-				42F7EF7E1CEEE9F9009F14AF /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
