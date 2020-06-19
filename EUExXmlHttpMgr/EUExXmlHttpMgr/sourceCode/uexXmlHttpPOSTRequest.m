@@ -115,6 +115,7 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
         case uexXmlHttpPOSTRequestConstructModeDefault: {
             [self.manager POST:self.serverPath
                     parameters:self.params
+                       headers:nil
                       progress:handleProgressBlock
                        success:handleSuccessBlock
                        failure:handleFailureBlock];
@@ -123,6 +124,7 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
         case uexXmlHttpPOSTRequestConstructModeMultipart: {
             [self.manager POST:self.serverPath
                     parameters:self.params
+                       headers:nil
      constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
          [self.files enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, uexXmlHttpFormFile * _Nonnull obj, BOOL * _Nonnull stop) {
              NSData *data = obj.fileData;
