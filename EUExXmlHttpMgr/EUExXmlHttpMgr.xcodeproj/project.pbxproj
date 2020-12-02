@@ -11,14 +11,12 @@
 		3C1C09D01BE062FE00571E72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C1C09D21BE062FE00571E72 /* Localizable.strings */; };
 		4229D9A51D06B279003F7E51 /* AppCanKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4229D9A41D06B279003F7E51 /* AppCanKit.framework */; };
 		42C67DD51CF2CF5400D2DF23 /* uexXmlHttpFormFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 42C67DD41CF2CF5400D2DF23 /* uexXmlHttpFormFile.m */; };
-		42C67DD61CF2ED2E00D2DF23 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */; };
 		42F7EF4E1CEEC748009F14AF /* EUExXmlHttpMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF4D1CEEC748009F14AF /* EUExXmlHttpMgr.m */; };
 		42F7EF511CEEC77C009F14AF /* uexXmlHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF501CEEC77C009F14AF /* uexXmlHttpRequest.m */; };
 		42F7EF571CEECA04009F14AF /* uexXmlHttpHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF561CEECA04009F14AF /* uexXmlHttpHelper.m */; };
 		42F7EF6A1CEEDCA8009F14AF /* uexXmlHttpAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF691CEEDCA8009F14AF /* uexXmlHttpAuthentication.m */; };
 		42F7EF6D1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6C1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m */; };
 		42F7EF701CEEE4D3009F14AF /* uexXmlHttpGETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6F1CEEE4D3009F14AF /* uexXmlHttpGETRequest.m */; };
-		42F7EF7E1CEEE9F9009F14AF /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +28,6 @@
 			remoteInfo = uexXmlHttpMgrBundle;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		034BF53A18B2EAED0074D5B7 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				42C67DD61CF2ED2E00D2DF23 /* AFNetworking.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		034BF53C18B2EAED0074D5B7 /* libuexXmlHttpMgr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuexXmlHttpMgr.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +72,6 @@
 			files = (
 				034BF54018B2EAED0074D5B7 /* Foundation.framework in Frameworks */,
 				4229D9A51D06B279003F7E51 /* AppCanKit.framework in Frameworks */,
-				42F7EF7E1CEEE9F9009F14AF /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +196,6 @@
 			buildPhases = (
 				034BF53818B2EAED0074D5B7 /* Sources */,
 				034BF53918B2EAED0074D5B7 /* Frameworks */,
-				034BF53A18B2EAED0074D5B7 /* CopyFiles */,
 			);
 			buildRules = (
 			);

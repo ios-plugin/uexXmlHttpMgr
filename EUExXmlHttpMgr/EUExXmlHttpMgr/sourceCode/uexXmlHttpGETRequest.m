@@ -33,6 +33,7 @@
     [super send];
     [self.manager GET:self.serverPath
            parameters:nil
+              headers:nil
              progress:^(NSProgress * _Nonnull downloadProgress) {
                  [self.euexObj request:self updateRequestProgress:downloadProgress];
              }

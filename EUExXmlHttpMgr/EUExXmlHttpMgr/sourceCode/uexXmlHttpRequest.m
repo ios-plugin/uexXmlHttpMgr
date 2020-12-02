@@ -81,16 +81,13 @@
 }
 
 - (void)close{
-    [self.manager invalidateSessionCancelingTasks:YES];
+    // AF4.0 第一个YES与以前一致，第二个是否重置session，目前写为NO
+    [self.manager invalidateSessionCancelingTasks:YES resetSession:NO];
 }
 
 - (void)setupAuthentication{
     if ([self.serverPath.lowercaseString hasPrefix:@"https://"] && self.authentication) {
         @weakify(self);
-        [self.manager setTaskDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, NSURLAuthenticationChallenge * _Nonnull challenge, NSURLCredential *__autoreleasing  _Nullable * _Nullable credential) {
-            @strongify(self);
-            return [self.authentication authChallengeDispositionWithSession:session challenge:challenge credential:credential];
-        }];
         [self.manager setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session, NSURLAuthenticationChallenge * _Nonnull challenge, NSURLCredential *__autoreleasing  _Nullable * _Nullable credential) {
             @strongify(self);
             return [self.authentication authChallengeDispositionWithSession:session challenge:challenge credential:credential];
