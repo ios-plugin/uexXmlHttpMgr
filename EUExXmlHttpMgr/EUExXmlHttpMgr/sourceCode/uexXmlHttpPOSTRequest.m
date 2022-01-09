@@ -81,6 +81,9 @@ typedef NS_ENUM(NSInteger,uexXmlHttpPOSTRequestConstructMode){
     return uexXmlHttpRequestMethodPOST;
 }
 
+- (void)setBody:(NSData *)bodyData {
+    [self setPostBody:bodyData];
+}
 
 - (void)send{
     [super send];

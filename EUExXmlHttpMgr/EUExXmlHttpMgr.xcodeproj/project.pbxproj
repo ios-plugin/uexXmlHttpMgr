@@ -17,6 +17,8 @@
 		42F7EF6A1CEEDCA8009F14AF /* uexXmlHttpAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF691CEEDCA8009F14AF /* uexXmlHttpAuthentication.m */; };
 		42F7EF6D1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6C1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m */; };
 		42F7EF701CEEE4D3009F14AF /* uexXmlHttpGETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6F1CEEE4D3009F14AF /* uexXmlHttpGETRequest.m */; };
+		E8308A9F278B25F10006A62B /* uexXmlHttpPUTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E8308A9D278B25F10006A62B /* uexXmlHttpPUTRequest.m */; };
+		E8308AA4278B31520006A62B /* uexXmlHttpDELETERequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E8308AA3278B31520006A62B /* uexXmlHttpDELETERequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,10 @@
 		42F7EF6E1CEEE4D3009F14AF /* uexXmlHttpGETRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpGETRequest.h; sourceTree = "<group>"; };
 		42F7EF6F1CEEE4D3009F14AF /* uexXmlHttpGETRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uexXmlHttpGETRequest.m; sourceTree = "<group>"; };
 		42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
+		E8308A9D278B25F10006A62B /* uexXmlHttpPUTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uexXmlHttpPUTRequest.m; sourceTree = "<group>"; };
+		E8308A9E278B25F10006A62B /* uexXmlHttpPUTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpPUTRequest.h; sourceTree = "<group>"; };
+		E8308AA2278B31520006A62B /* uexXmlHttpDELETERequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpDELETERequest.h; sourceTree = "<group>"; };
+		E8308AA3278B31520006A62B /* uexXmlHttpDELETERequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uexXmlHttpDELETERequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,10 @@
 				42F7EF321CEEC719009F14AF /* JSON */,
 				42F7EF4F1CEEC77C009F14AF /* uexXmlHttpRequest.h */,
 				42F7EF501CEEC77C009F14AF /* uexXmlHttpRequest.m */,
+				E8308AA2278B31520006A62B /* uexXmlHttpDELETERequest.h */,
+				E8308AA3278B31520006A62B /* uexXmlHttpDELETERequest.m */,
+				E8308A9E278B25F10006A62B /* uexXmlHttpPUTRequest.h */,
+				E8308A9D278B25F10006A62B /* uexXmlHttpPUTRequest.m */,
 				42F7EF6B1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.h */,
 				42F7EF6C1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m */,
 				42F7EF6E1CEEE4D3009F14AF /* uexXmlHttpGETRequest.h */,
@@ -243,6 +253,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				"zh-Hans",
 			);
@@ -273,12 +284,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8308AA4278B31520006A62B /* uexXmlHttpDELETERequest.m in Sources */,
 				42F7EF4E1CEEC748009F14AF /* EUExXmlHttpMgr.m in Sources */,
 				42F7EF571CEECA04009F14AF /* uexXmlHttpHelper.m in Sources */,
 				42F7EF6A1CEEDCA8009F14AF /* uexXmlHttpAuthentication.m in Sources */,
 				42C67DD51CF2CF5400D2DF23 /* uexXmlHttpFormFile.m in Sources */,
 				42F7EF6D1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m in Sources */,
 				42F7EF511CEEC77C009F14AF /* uexXmlHttpRequest.m in Sources */,
+				E8308A9F278B25F10006A62B /* uexXmlHttpPUTRequest.m in Sources */,
 				42F7EF701CEEE4D3009F14AF /* uexXmlHttpGETRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

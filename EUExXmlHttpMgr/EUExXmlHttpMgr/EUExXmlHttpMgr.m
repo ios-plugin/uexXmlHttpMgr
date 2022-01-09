@@ -50,7 +50,9 @@ static inline NSString * newID(){
     dispatch_once(&onceToken, ^{
         HTTPMethods = @{
             @"get":@(uexXmlHttpRequestMethodGET),
-            @"post":@(uexXmlHttpRequestMethodPOST)
+            @"post":@(uexXmlHttpRequestMethodPOST),
+            @"put":@(uexXmlHttpRequestMethodPUT),
+            @"delete":@(uexXmlHttpRequestMethodDELETE),
             };
     });
 }
@@ -270,12 +272,13 @@ static inline NSString * newID(){
 
 - (UEX_BOOL)setBody:(NSMutableArray *)inArguments{
     ACArgsUnpack(NSString *identifier,NSString *body) = inArguments;
-    uexXmlHttpPOSTRequest *request = [self getPostRequestByIdentifier:identifier];
+    uexXmlHttpRequest *request = self.requestDict[identifier];
     if (!request) {
         return UEX_FALSE;
     }
     NSData *data = [body dataUsingEncoding:NSUTF8StringEncoding];
-    [request setPostBody:data];
+    // 统一改为setBody，PUT和DELETE和POST等相同
+    [request setBody:data];
     return  UEX_TRUE;
 }
 

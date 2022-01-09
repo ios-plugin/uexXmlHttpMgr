@@ -24,6 +24,8 @@
 #import "uexXmlHttpRequest.h"
 #import "uexXmlHttpGETRequest.h"
 #import "uexXmlHttpPOSTRequest.h"
+#import "uexXmlHttpPUTRequest.h"
+#import "uexXmlHttpDELETERequest.h"
 #import "EUExXmlHttpMgr.h"
 #import "uexXmlHttpHelper.h"
 #import <AppCanKit/ACEXTScope.h>
@@ -33,6 +35,14 @@
     __kindof uexXmlHttpRequest *request = nil;
     
     switch (method) {
+        case uexXmlHttpRequestMethodDELETE: {
+            request = [[uexXmlHttpDELETERequest alloc]initWithEuexObj:euexObj];
+            break;
+        }
+        case uexXmlHttpRequestMethodPUT: {
+            request = [[uexXmlHttpPUTRequest alloc]initWithEuexObj:euexObj];
+            break;
+        }
         case uexXmlHttpRequestMethodPOST: {
             request = [[uexXmlHttpPOSTRequest alloc]initWithEuexObj:euexObj];
             break;
@@ -109,6 +119,10 @@
 - (uexXmlHttpRequestMethod)method{
     NSAssert(self.class != [uexXmlHttpRequest class], @"subclass MUST override this method:%s",__func__);
     return uexXmlHttpRequestMethodPOST;
+}
+
+- (void)setBody:(NSData *)bodyData {
+    ACLogInfo(@"->uexXmlHttpMgr request setBody");
 }
 
 - (void)send{

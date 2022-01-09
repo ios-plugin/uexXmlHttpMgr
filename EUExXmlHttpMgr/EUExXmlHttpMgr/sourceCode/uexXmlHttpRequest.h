@@ -33,6 +33,8 @@
 
 
 typedef NS_ENUM(NSInteger,uexXmlHttpRequestMethod){
+    uexXmlHttpRequestMethodDELETE,
+    uexXmlHttpRequestMethodPUT,
     uexXmlHttpRequestMethodPOST,
     uexXmlHttpRequestMethodGET
 };
@@ -76,6 +78,11 @@ typedef NS_ENUM(NSInteger,uexXmlHttpRequestStatus){
 
 #pragma mark - subclass MUST override the methods below!
 - (uexXmlHttpRequestMethod)method;
+
+/// 为了统一而新增方法。同setPostBody。
+/// @param bodyData 请求体
+- (void)setBody:(NSData *)bodyData;
+
 - (void)send NS_REQUIRES_SUPER;
 
 
