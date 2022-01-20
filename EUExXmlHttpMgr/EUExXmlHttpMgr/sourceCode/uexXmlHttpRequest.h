@@ -33,6 +33,7 @@
 
 
 typedef NS_ENUM(NSInteger,uexXmlHttpRequestMethod){
+    uexXmlHttpRequestMethodPATCH,
     uexXmlHttpRequestMethodDELETE,
     uexXmlHttpRequestMethodPUT,
     uexXmlHttpRequestMethodPOST,

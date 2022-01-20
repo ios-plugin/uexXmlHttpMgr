@@ -26,6 +26,7 @@
 #import "uexXmlHttpPOSTRequest.h"
 #import "uexXmlHttpPUTRequest.h"
 #import "uexXmlHttpDELETERequest.h"
+#import "uexXmlHttpPATCHRequest.h"
 #import "EUExXmlHttpMgr.h"
 #import "uexXmlHttpHelper.h"
 #import <AppCanKit/ACEXTScope.h>
@@ -35,6 +36,10 @@
     __kindof uexXmlHttpRequest *request = nil;
     
     switch (method) {
+        case uexXmlHttpRequestMethodPATCH: {
+            request = [[uexXmlHttpPATCHRequest alloc]initWithEuexObj:euexObj];
+            break;
+        }
         case uexXmlHttpRequestMethodDELETE: {
             request = [[uexXmlHttpDELETERequest alloc]initWithEuexObj:euexObj];
             break;

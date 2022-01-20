@@ -53,6 +53,7 @@ static inline NSString * newID(){
             @"post":@(uexXmlHttpRequestMethodPOST),
             @"put":@(uexXmlHttpRequestMethodPUT),
             @"delete":@(uexXmlHttpRequestMethodDELETE),
+            @"patch":@(uexXmlHttpRequestMethodPATCH),
             };
     });
 }
