@@ -19,6 +19,7 @@
 		42F7EF6D1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6C1CEEE4A4009F14AF /* uexXmlHttpPOSTRequest.m */; };
 		42F7EF701CEEE4D3009F14AF /* uexXmlHttpGETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F7EF6F1CEEE4D3009F14AF /* uexXmlHttpGETRequest.m */; };
 		42F7EF7E1CEEE9F9009F14AF /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */; };
+		E85C9F502D42495200E7A1CF /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E85C9F4F2D42495200E7A1CF /* info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		42F7EF6E1CEEE4D3009F14AF /* uexXmlHttpGETRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uexXmlHttpGETRequest.h; sourceTree = "<group>"; };
 		42F7EF6F1CEEE4D3009F14AF /* uexXmlHttpGETRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = uexXmlHttpGETRequest.m; sourceTree = "<group>"; };
 		42F7EF7D1CEEE9F9009F14AF /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
+		E85C9F4F2D42495200E7A1CF /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		3C1AD5891BD5F39A0091D2A1 /* uexXmlHttpMgrBundle */ = {
 			isa = PBXGroup;
 			children = (
+				E85C9F4F2D42495200E7A1CF /* info.plist */,
 				3C1C09D21BE062FE00571E72 /* Localizable.strings */,
 			);
 			path = uexXmlHttpMgrBundle;
@@ -260,6 +263,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				"zh-Hans",
 			);
@@ -279,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E85C9F502D42495200E7A1CF /* info.plist in Resources */,
 				3C1C09D01BE062FE00571E72 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,7 +458,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/uexXmlHttpMgrBundle/info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -477,7 +482,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/uexXmlHttpMgrBundle/info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
