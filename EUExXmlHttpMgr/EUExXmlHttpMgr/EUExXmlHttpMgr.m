@@ -27,6 +27,8 @@
 #import "uexXmlHttpHelper.h"
 #import "JSON.h"
 
+#import "EBrowserView.h"
+
 //#define FILEPATH [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 @interface EUExXmlHttpMgr()
@@ -326,6 +328,12 @@ static inline NSString * newID(){
             NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieDict];
             // 存储cookie
             [cookieStorage setCookie:cookie];
+            
+            // 获取WKWebView中的CookieStorage，同步进去
+            if (@available(iOS 11.0, *)) {
+                WKHTTPCookieStore *cookieStore = ((WKWebView *)((EBrowserView *)self.webViewEngine).meBrowserView).configuration.websiteDataStore.httpCookieStore;
+                [cookieStore setCookie:cookie completionHandler:nil];
+            }
         }
     }
 }
